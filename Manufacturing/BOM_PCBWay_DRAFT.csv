@@ -1,0 +1,18 @@
+Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,Type,Basic,Full,Status
+1,U1,1,FT2232HL,FTDI,Dual USB UART,LQFP64,SMD,Fit,Fit,Proposed
+2,U2,1,STM32G0B1CBT6,STMicroelectronics,MCU,LQFP48,SMD,Fit,Fit,Proposed
+3,U3,1,TBD,TBD,SX1262 TCXO 433 MHz module,TBD,SMD,Fit,Fit,Selection required
+4,U4,1,TBD,TBD,SX1262 TCXO 868 MHz module,TBD,SMD,Fit,Fit,Selection required
+5,U6,1,USB2422,Microchip,USB hub,QFN24,SMD,Fit,Fit,Ordering suffix TBD
+6,U7,1,RP2040,Raspberry Pi,Debugger MCU,QFN56,SMD,Fit,Fit,Proposed
+7,U10,1,TPS2121RUXR,Texas Instruments,Power mux,VQFN12,SMD,DNP,Fit,Proposed R2 ref
+8,J1,1,TBD,TBD,USB-C male,TBD,TBD,Fit,Fit,Selection required
+9,"J2,J3",2,TBD,TBD,SMA female 50 ohm,TBD,TBD,Fit,Fit,Selection required
+10,J6,1,TBD,TBD,USB-C auxiliary power,TBD,SMD,DNP,Fit,Proposed R2 ref
+11,U5,1,TBD,TBD,3.3 V buck,TBD,SMD,Fit,Fit,Selection required
+12,U8,1,TBD,TBD,SWD isolation,TBD,SMD,Fit,Fit,Selection required
+13,U9,1,TBD,TBD,Debugger load switch,TBD,SMD,Fit,Fit,Selection required
+14,J4,1,TBD,TBD,External SWD connector,TBD,TBD,Fit,Fit,Selection required
+15,R1,1,TBD,TBD,5.1k USB-C Rd,0603,SMD,Fit,Fit,Proposed
+16,SJ1,1,,PCB,Power mux bypass,Solder jumper,PCB,Closed,Open,Proposed R2 ref
+17,C_BULK,1,TBD,TBD,470uF reservoir,TBD,TBD,DNP,Fit,Provisional reference
