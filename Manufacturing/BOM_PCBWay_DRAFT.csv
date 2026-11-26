@@ -27,4 +27,4 @@ Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,T
 26,R8,1,TBD,TBD,10k 868 reset pull-up candidate,0603,SMD,Fit,Fit,Preliminary verify
 27,R9,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
 28,R10,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
-29,R11,1,TBD,TBD,10k Default enabled; jumper to GND disables; active-high load switch required,0603,SMD,Fit,Fit,Preliminary verify
+29,R11,1,TBD,TBD,10k DEBUG_EN pull-down; jumper to 3V3 enables,0603,SMD,Fit,Fit,Preliminary verify
