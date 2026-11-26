@@ -594,11 +594,11 @@ Wire Wire Line
 Text Label 19850 5950 0 40 ~ 0
 DBG_3V3
 Text Notes 17300 6500 0 60 ~ 0
-U7 physical pin numbering per ST DS14581 Fig. 5; support circuitry and firmware validation pending.
+U7 physical pin numbering per ST DS14548 (LQFP48 pinout); support circuitry and firmware validation pending.
 Text Notes 17300 6750 0 60 ~ 0
 PA2/PA3 USART2; PA4/PA5/PA6 target SWD GPIO; PA13/PA14 probe programming.
 Text Notes 17300 7000 0 60 ~ 0
-PROBE_BOOT0, PROBE_NRST and PROBE_SWD nets require bias/programming access.
+Probe support: J7 programming access; R13/C3 boot/reset bias; C4-C9 supply bypass.
 Wire Wire Line
 	9700 5150 9950 5150
 Text Label 9700 5150 0 35 ~ 0
@@ -711,10 +711,6 @@ F 1 "DEBUG_LOAD_SWITCH" H 4600 4150 50 0000 C CNN
 	1 4600 4500
 	1 0 0 -1
 $EndComp
-Wire Wire Line
-	3500 6000 3750 6000
-Text Label 3500 6000 0 35 ~ 0
-GND
 Wire Wire Line
 	5450 5950 5700 5950
 Text Label 5450 5950 0 35 ~ 0
@@ -1047,7 +1043,7 @@ GND
 Text Notes 1200 15500 0 60 ~ 0
 Bridge-view UART labels: bridge TX/RTS to target RX/CTS. DEBUG_EN high enables; J5 open defaults OFF.
 Text Notes 1200 15700 0 60 ~ 0
-J5: jumper 3V3 to DEBUG_EN; open defaults OFF. U7 needs separate programming SWD and BOOT0 bias.
+J5: jumper 3V3 to DEBUG_EN; open defaults OFF. U7 programming via J7; enable debugger supply first.
 Wire Wire Line
 	11650 5100 11900 5100
 Text Label 11650 5100 0 35 ~ 0
@@ -1111,4 +1107,213 @@ Text Label 16950 11900 0 40 ~ 0
 GND
 Text Notes 15500 11100 0 60 ~ 0
 BOOT0 and RF control: logical only; verify physical AF and module MPN.
+Text Notes 17300 7450 0 65 ~ 0
+U7 support: place bypass capacitors adjacent to corresponding supply pins.
+$Comp
+L LoRa_DualBand:PASSIVE_R R13
+U 1 1 44D0600
+P 17500 8200
+F 0 "R13" H 17500 8050 50 0000 C CNN
+F 1 "10k" H 17500 8350 50 0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 17500 8200 50 0001 C CNN
+	1 17500 8200
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	16650 8200 17150 8200
+Text Label 16650 8200 0 40 ~ 0
+PROBE_BOOT0
+Wire Wire Line
+	17850 8200 18350 8200
+Text Label 17850 8200 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C3
+U 1 1 44D0601
+P 21200 8200
+F 0 "C3" H 21200 8050 50 0000 C CNN
+F 1 "100n" H 21200 8350 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 21200 8200 50 0001 C CNN
+	1 21200 8200
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	20350 8200 20850 8200
+Text Label 20350 8200 0 40 ~ 0
+PROBE_NRST
+Wire Wire Line
+	21550 8200 22050 8200
+Text Label 21550 8200 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C4
+U 1 1 44D0602
+P 17500 9300
+F 0 "C4" H 17500 9150 50 0000 C CNN
+F 1 "100n" H 17500 9450 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 17500 9300 50 0001 C CNN
+	1 17500 9300
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	16650 9300 17150 9300
+Text Label 16650 9300 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	17850 9300 18350 9300
+Text Label 17850 9300 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C5
+U 1 1 44D0603
+P 21200 9300
+F 0 "C5" H 21200 9150 50 0000 C CNN
+F 1 "100n" H 21200 9450 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 21200 9300 50 0001 C CNN
+	1 21200 9300
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	20350 9300 20850 9300
+Text Label 20350 9300 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	21550 9300 22050 9300
+Text Label 21550 9300 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C6
+U 1 1 44D0604
+P 17500 10400
+F 0 "C6" H 17500 10250 50 0000 C CNN
+F 1 "100n" H 17500 10550 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 17500 10400 50 0001 C CNN
+	1 17500 10400
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	16650 10400 17150 10400
+Text Label 16650 10400 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	17850 10400 18350 10400
+Text Label 17850 10400 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C7
+U 1 1 44D0605
+P 21200 10400
+F 0 "C7" H 21200 10250 50 0000 C CNN
+F 1 "100n" H 21200 10550 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 21200 10400 50 0001 C CNN
+	1 21200 10400
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	20350 10400 20850 10400
+Text Label 20350 10400 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	21550 10400 22050 10400
+Text Label 21550 10400 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C8
+U 1 1 44D0606
+P 17500 11500
+F 0 "C8" H 17500 11350 50 0000 C CNN
+F 1 "1u" H 17500 11650 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 17500 11500 50 0001 C CNN
+	1 17500 11500
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	16650 11500 17150 11500
+Text Label 16650 11500 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	17850 11500 18350 11500
+Text Label 17850 11500 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C9
+U 1 1 44D0607
+P 21200 11500
+F 0 "C9" H 21200 11350 50 0000 C CNN
+F 1 "100n" H 21200 11650 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 21200 11500 50 0001 C CNN
+	1 21200 11500
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	20350 11500 20850 11500
+Text Label 20350 11500 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	21550 11500 22050 11500
+Text Label 21550 11500 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_C C10
+U 1 1 44D0608
+P 21200 12600
+F 0 "C10" H 21200 12450 50 0000 C CNN
+F 1 "4.7u" H 21200 12750 50 0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 21200 12600 50 0001 C CNN
+	1 21200 12600
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	20350 12600 20850 12600
+Text Label 20350 12600 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	21550 12600 22050 12600
+Text Label 21550 12600 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:GND_SOURCE_FLAG #FLG0101
+U 1 1 44D0610
+P 16500 12600
+F 0 "#FLG0101" H 16500 12600 50 0001 C CNN
+F 1 "PWR_FLAG" H 16500 12450 50 0000 C CNN
+	1 16500 12600
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	16000 12600 16500 12600
+Text Label 16000 12600 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PROBE_SWD_5 J7
+U 1 1 44D0611
+P 19500 13800
+F 0 "J7" H 19500 13380 50 0000 C CNN
+F 1 "PROBE_SWD_5" H 19500 13450 50 0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 19500 13800 50 0001 C CNN
+	1 19500 13800
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	18300 13600 19000 13600
+Text Label 18300 13600 0 40 ~ 0
+DBG_3V3
+Wire Wire Line
+	18300 13700 19000 13700
+Text Label 18300 13700 0 40 ~ 0
+PROBE_SWCLK
+Wire Wire Line
+	18300 13800 19000 13800
+Text Label 18300 13800 0 40 ~ 0
+GND
+Wire Wire Line
+	18300 13900 19000 13900
+Text Label 18300 13900 0 40 ~ 0
+PROBE_SWDIO
+Wire Wire Line
+	18300 14000 19000 14000
+Text Label 18300 14000 0 40 ~ 0
+PROBE_NRST
+Text Notes 17300 14500 0 55 ~ 0
+J7: VTREF sense only; do not power U7 from external programmer. Enable J5 first.
 $EndSCHEMATC
