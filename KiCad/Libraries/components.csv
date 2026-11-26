@@ -21,3 +21,12 @@ R2,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
 R3,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
 SJ1,TBD,,,Bypass footprint pending
 C1,TBD,,,Bulk capacitor selection pending
+R4,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R5,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R6,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R7,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R8,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R9,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R10,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R11,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+C2,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
