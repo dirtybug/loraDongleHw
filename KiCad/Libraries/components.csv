@@ -1,8 +1,8 @@
 Reference,MPN,Symbol,Footprint,Status
-U1,FT4232HL,Interface_USB:FT4232HL,Package_QFP:LQFP-64_10x10mm_P0.5mm,Verify installed library
+U1,FT4232HL,Interface_USB:FT4232H,Package_QFP:LQFP-64_10x10mm_P0.5mm,Verify installed library
 U2,STM32G0B1RET6,MCU_ST_STM32G0:STM32G0B1RETx,Package_QFP:LQFP-64_10x10mm_P0.5mm,Verify installed library
-U3,TBD,,,Module selection pending
-U4,TBD,,,Module selection pending
-U6,USB2422,,,Verify library and package
-U7,RP2040,,,Verify library and package
-U10,TPS2121RUXR,,,Verify library and package
+U3,E22-400M22S,,,Candidate SX1268 - TCXO and land pattern pending
+U4,E22-900M22S,,,Candidate SX1262 - TCXO and land pattern pending
+U6,USB2422,,,Exact package and symbol pending
+U7,RP2040,MCU_RaspberryPi:RP2040,Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,Verify installed library
+U10,TPS2121RUXR,,,Manufacturer RUX land pattern required
