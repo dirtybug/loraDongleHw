@@ -503,10 +503,6 @@ Wire Wire Line
 Text Label 8350 5250 0 35 ~ 0
 DBG_NRST
 Wire Wire Line
-	8350 5350 8600 5350
-Text Label 8350 5350 0 35 ~ 0
-BOOTSEL
-Wire Wire Line
 	8350 5450 8600 5450
 Text Label 8350 5450 0 35 ~ 0
 DBG_LOG_TX
@@ -515,11 +511,11 @@ Wire Wire Line
 Text Label 8350 5550 0 35 ~ 0
 DBG_LOG_RX
 $Comp
-L LoRa_DualBand:U7_RP2040_CMSIS_DAP U7
+L LoRa_DualBand:U7_STM32F072CBT6_CMSIS_DAP U7
 U 1 1 41D0259
 P 7500 5300
 F 0 "U7" H 7500 4780 50 0000 C CNN
-F 1 "RP2040_CMSIS_DAP" H 7500 4850 50 0000 C CNN
+F 1 "STM32F072CBT6_CMSIS_DAP" H 7500 4850 50 0000 C CNN
 	1 7500 5300
 	1 0 0 -1
 $EndComp
@@ -643,10 +639,6 @@ Wire Wire Line
 	5450 5950 5700 5950
 Text Label 5450 5950 0 35 ~ 0
 DEBUG_EN
-Wire Wire Line
-	5450 6050 5700 6050
-Text Label 5450 6050 0 35 ~ 0
-BOOTSEL
 Wire Wire Line
 	3500 5800 3750 5800
 Text Label 3500 5800 0 35 ~ 0
@@ -975,7 +967,7 @@ GND
 Text Notes 1200 15500 0 60 ~ 0
 Bridge-view UART labels: bridge TX/RTS to target RX/CTS. DEBUG_EN high enables; J5 open defaults OFF.
 Text Notes 1200 15700 0 60 ~ 0
-J5: separate jumpers 3V3 to DEBUG_EN and GND to BOOTSEL. Never short 3V3 to GND.
+J5: jumper 3V3 to DEBUG_EN; open defaults OFF. U7 needs separate programming SWD and BOOT0 bias.
 Wire Wire Line
 	11650 5100 11900 5100
 Text Label 11650 5100 0 35 ~ 0
