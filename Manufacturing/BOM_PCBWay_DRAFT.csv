@@ -1,6 +1,6 @@
 Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,Type,Basic,Full,Status
-1,U1,1,FT2232HL,FTDI,Dual USB UART,LQFP64,SMD,Fit,Fit,Proposed
-2,U2,1,STM32G0B1CBT6,STMicroelectronics,MCU,LQFP48,SMD,Fit,Fit,Proposed
+1,U1,1,FT4232HL,FTDI,Quad USB UART,LQFP64,SMD,Fit,Fit,Proposed
+2,U2,1,STM32G0B1RET6,STMicroelectronics,MCU,LQFP64,SMD,Fit,Fit,Proposed
 3,U3,1,TBD,TBD,SX1262 TCXO 433 MHz module,TBD,SMD,Fit,Fit,Selection required
 4,U4,1,TBD,TBD,SX1262 TCXO 868 MHz module,TBD,SMD,Fit,Fit,Selection required
 5,U6,1,USB2422,Microchip,USB hub,QFN24,SMD,Fit,Fit,Ordering suffix TBD
