@@ -21,6 +21,7 @@ All components in `KiCad/LoRa_DualBand.kicad_sch` and `KiCad/LoRa_DualBand.kicad
 | **U9** | `TPS22918DBVR` (2 A Load Switch) | SOT-23-6 | `LoRa_DualBand_Custom:TPS22918` | `Package_TO_SOT_SMD:SOT-23-6` |
 | **U10** | `TPS2121RUXR` (4.5 A Power Mux, DNP Basic) | VQFN-HR-12 | `LoRa_DualBand_Custom:TPS2121RUXR` | `LoRa_DualBand_Custom:TI_VQFN-HR-12_2.0x2.5mm_RUX` |
 | **U12** | `93LC56BT-I/SN` (FT4232HL EEPROM) | SOIC-8 | `Memory_EEPROM:93LCxxC` | `Package_SO:SOIC-8_3.9x4.9mm_P1.27mm` |
+| **U13** | `TPS3839K33DBZR` (2.93 V 200 ms Delayed PG Supervisor) | SOT-23-3 | `LoRa_DualBand_Custom:TPS3839K33` | `Package_TO_SOT_SMD:SOT-23` |
 | **FL1** | `LFCN-490+` (433 MHz LTCC LPF, 8.5 W) | FV1206 | `LoRa_DualBand_Custom:MiniCircuits_FV1206_Filter` | `Filter:Filter_Mini-Circuits_FV1206` |
 | **FL2** | `HFCN-740+` (868 MHz LTCC HPF, 7 W, >40 dB @ 433 MHz) | FV1206 | `LoRa_DualBand_Custom:MiniCircuits_FV1206_Filter` | `Filter:Filter_Mini-Circuits_FV1206` |
 | **FL3** | `LFCN-900+` (868 MHz LTCC LPF, 10 W, >30 dB @ 1736 MHz) | FV1206 | `LoRa_DualBand_Custom:MiniCircuits_FV1206_Filter` | `Filter:Filter_Mini-Circuits_FV1206` |

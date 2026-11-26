@@ -1,19 +1,21 @@
-# R2 hardware requirements (draft)
-- STM32G0B1RET6, four independent USARTs with RTS/CTS and DMA, fifth USART for debug logs, two SPI buses; pin mux pending.
-- FT4232H quad UART: A shared AT control, B 433 MHz data, C 868 MHz data, D selectable native mesh protocol. STM32U073CCT6 UART bridge for logs. EEPROM configuration to validate.
-- Two SX1262 TCXO modules, 433 MHz and 868 MHz, independent 50 ohm SMA female connectors.
-- USB-C male with extended narrow neck for phone cases; preliminary board 90 x 35 mm, four layers.
-- USB2422 hub and STM32U073CCT6 CMSIS-DAP onboard debugger; external SWD isolation; U7 has 256 KB internal Flash and requires its own programming SWD access and BOOT0 bias. CMSIS-DAP plus CDC firmware port must be validated.
-- Optional USB-C auxiliary 5 V input, TPS2121 power mux, mutually exclusive solder bypass, inrush and reverse-current protection. Basic and Full assembly variants.
-- Optional bulk capacitor after current limiting; verify USB power budget and all supply rails.
-- Test points on both sides of 0603 zero-ohm isolation links for UART, SPI, BUSY, DIO1 and RESET; SWD access and ground points.
-- Separate power isolation links and current measurement points per subsystem; prevent GPIO backfeed.
-- No conventional stubs on RF or USB HS differential traces.
-- Validate pin multiplexing, RF harmonics/coexistence, antenna match, power and mechanical strength.
-- Firmware and Android belong to separate repositories. Target Keil RTX5.
-- Original reference: https://github.com/Ropixon/AT-LoRa-USB-Dongle (do not redistribute original design without verified permission).
-- No fabrication approval until complete schematic, real footprints, routing, ERC/DRC and engineering review. Variant-specific BOM/CPL generation still needs implementation.
+# R2 Hardware Requirements (`LoRa DualBand R2-DEV`)
 
-- Shared control commands explicitly identify target radio (433/868 or ALL where meaningful); serialize per-radio state transitions and arbitrate raw/native mesh ownership. No debug text on binary ports.
-
-- Debugger default OFF: R11 10k pull-down on DEBUG_EN. J5 enables by connecting 3V3 to DEBUG_EN; U9 must enable high; U8/U11 must remain isolated until debugger power is valid and disable before power removal. Invert active-low OE as needed, and verify powered-off leakage and startup/shutdown sequencing. Logical enable wiring is not a validated physical isolation circuit.
+- **Main MCU (`U2`):** `STM32G0B1RET6` (LQFP-64) with four independent USARTs (`USART1/2/3/5`) with hardware `RTS/CTS` and DMA, fifth UART (`LPUART2`) for debug logs, two independent SPI buses (`SPI1`, `SPI2`), `16 MHz` HSE crystal (`Y3`), and `PA14-BOOT0` pulled down via `R10` (shared with `SWCLK`).
+- **USB-UART Bridge (`U1`):** `FT4232HL` (LQFP-64) with `12 MHz` crystal (`Y1`) and `93LC56BT-I/SN` EEPROM (`U12`): Channel A shared AT control, B 433 MHz data, C 868 MHz data, D selectable native mesh protocol.
+- **Dual-Band LoRa Modules & RF Coexistence Protection:**
+  - **433 MHz (`U3`):** `Ebyte E22-400M22S` (**SX1268**, +22 dBm, TCXO) → **`FL1` Mini-Circuits `LFCN-490+`** (LTCC LPF `8.5 W`, attenuates the 2nd harmonic at `866–868 MHz` by `~35–40 dB`) → `R_RF_A` (`0 Ω` 0402) → **`J2` SMA female 50 Ω (`Amphenol 132289`) on the TOP edge**.
+  - **868 MHz (`U4`):** `Ebyte E22-900M22S` (**SX1262**, +22 dBm, TCXO) → **`FL2` `HFCN-740+`** (HPF `7 W`, `≥ 40 dB` rejection @ 433 MHz) + **`FL3` `LFCN-900+`** (LPF `10 W`, `≥ 30–35 dB` rejection @ 1736 MHz) forming a **bidirectional 7 W BPF (780–900 MHz)** → `R_RF_B` (`0 Ω` 0402) → **`J3` SMA female 50 Ω (`Amphenol 132289`) on the BOTTOM edge** (opposite sides of PCB for articulated 90° cross-polarized antennas).
+  - **Controlled-Impedance RF Routing:** All RF traces on `F.Cu` over solid `In1.Cu` GND plane with `In2.Cu` RF GND shield and GND stitching via fence. Preliminary `0.35 mm` trace width **MUST** be recalculated for exact `50 Ω` CPWG against the final contracted PCBWay 4-layer stackup (prepreg thickness and `εr`) with Impedance Control enabled.
+  - **Firmware RF Coexistence Manager (on `U2`):** Initial conservative policy: allow `RX/RX`, block concurrent `RX` during the other radio's `TX` (`TX/RX`, `RX/TX`), and block simultaneous `TX/TX` until laboratory antenna isolation (`S21`) and receiver desensitization are measured.
+- **Form Factor & USB Interface:** `J1` USB-C male plug (`JAE DX07P024AJ1`) with extended narrow neck for phone cases (`82×35 mm` body + `8×9 mm` neck = `90×35 mm`, 4-layer `1.6 mm` ENIG), `D1` (`USBLC6-2SC6`) ESD, `D2` (`SMAJ5.0A`) TVS, and `U6` (`USB2422-I/MJ`) 2-port USB 2.0 Hi-Speed hub.
+- **Onboard Debugger & Safe Sequencing:**
+  - `U7` (`STM32U073CCT6`, LQFP-48, 256 KB internal Flash, crystal-less USB FS via HSI48+CRS, dedicated 5-pin SWD `J7` and `R13` pull-down on `PF3-BOOT0`).
+  - Default **OFF**: `R11 = 10 kΩ` pull-down on `DEBUG_EN`. Closing `J5` (`3V3` via `R52 = 1 kΩ`) asserts `DEBUG_EN` → enables `U9` (`TPS22918DBVR` load switch, soft-start `C62 = 1 nF`) to raise `DBG_3V3`.
+  - **Delayed Bus-Isolator Sequencing (`U13` = `TPS3839K33DBZR`):** Monitors `DBG_3V3` directly (`2.93 V` threshold, `200 ms` delay, push-pull `~{RESET}` → `DBG_BUS_EN` with `R58 = 100 kΩ` pull-down). `U8` (SWD `SN74CB3Q3126PWR`) and `U11` (UART `SN74CB3Q3126PWR`) **only enable 200 ms AFTER `DBG_3V3` is stable**, and **disable in `< 20 µs` on power-down** before `U7` loses supply.
+- **Power Architecture, Variants & USB OTG Validation:**
+  - `U5` (`TPS562201DDCR`, `4.5–17 V` in, `3.31 V / 2 A` sync buck, shielded `L1 = 3.3 µH` `IHLP1616ABER3R3M01`). Note: buck capability (`2 A`) does **not** mean a phone OTG host can supply `2 A` (typical OTG limit is `300–500 mA`, and `≤ 100 mA` pre-enumeration).
+  - **Basic Variant (`SJ1` closed; `J6`, `U10`, `C1A`, `C1B` DNP):** Direct `VBUS` total capacitance `C21 (1 µF) + C24 (4.7 µF) + C25 (0.1 µF) = 5.8 µF` (`≤ 10 µF` USB 2.0 inrush limit).
+  - **Full Variant (`SJ1` open; `J6` `TYPE-C-31-M-12`, `U10` `TPS2121RUXR`, `C1A/C1B` `2× 220 µF` fitted):** Priority power mux with `ILM ≈ 1.5 A`, `OVLO ≈ 5.9 V`, soft-start (`C20 = 22 nF`), reverse-current blocking, and `PWR_SRC_ST` sense to `U2`.
+  - **Mandatory OTG Bench Validation:** Verify pre-enumeration current (`≤ 100 mA`), USB enumeration (`USB_PWREN_N` / `USB_SUSP` gating RF TX), inrush waveform, and peak TX consumption on smartphones for both Basic and Full variants.
+- **DEV Isolation & Testability:** `0 Ω` series links on every subsystem power rail (`R_PWR_3V3/U6/U1/U2/U7`, `FB1/FB2`) and all 36 MCU digital lines (`R101..R118`, `R121..R129`, `R131..R139`), plus `TP1..TP17` and `FID1..FID3`. Zero stubs on USB HS or RF lines.
+- **Software & Release Policy:** Firmware (Keil RTX5) and Android app belong to separate repositories. Shared control commands explicitly identify target radio (`433`/`868`/`ALL`); no debug text on binary ports. Original conceptual reference: `https://github.com/Ropixon/AT-LoRa-USB-Dongle`. No fabrication approval until final manual PCB routing completion, PCBWay stackup impedance check, `kicad-cli` ERC/DRC = 0, and variant BOM/CPL review.

@@ -2,7 +2,7 @@
 
 > **Objetivo:** Validar integralmente a revisão **DEV** (protótipo de desenvolvimento/bancada) antes de gerar Gerbers, BOM e Pick-and-Place para fabrico.  
 > **Regra de ouro:** Nenhum item passa por suposição — cada caixa `[x]` corresponde a verificação direta no esquemático nativo (`KiCad/LoRa_DualBand.kicad_sch`), PCB (`KiCad/LoRa_DualBand.kicad_pcb`), biblioteca (`KiCad/Libraries/LoRa_DualBand_Custom.*`), datasheet oficial ou ensaio de bancada.  
-> **Última auditoria:** Revisão **R2-DEV completa em KiCad 8 nativo** — `222` símbolos (`210` componentes físicos + `12` `PWR_FLAG`), `0` TBD na BOM (`59` linhas), `0` erros ERC internos, `0` sobreposições de courtyard na PCB 4 camadas, filtros RF dedicados (`FL1` `LFCN-490+` + `FL2` `HFCN-740+` + `FL3` `LFCN-900+`), SMAs em arestas opostas (`J2` topo / `J3` fundo), e `85.6%` (`267/312`) dos pares de sinal + `98.4%` (`190/193`) vias de plano auto-roteados (restam `45` pares para acabamento manual no KiCad PCB Editor).
+> **Última auditoria:** Revisão **R2-DEV completa em KiCad 8 nativo** — `226` símbolos (`214` componentes físicos + `12` `PWR_FLAG`), `0` TBD na BOM, `0` erros ERC internos, `0` sobreposições de courtyard na PCB 4 camadas, sequenciador dedicado **`U13` (`TPS3839K33DBZR`, atraso `200 ms` dependente de `DBG_3V3`)** para `U8`/`U11`, capacitância `VBUS` da variante Basic reduzida para `5.8 µF ≤ 10 µF`, filtros RF dedicados (`FL1` `LFCN-490+` + `FL2` `HFCN-740+` + `FL3` `LFCN-900+`), e SMAs em arestas opostas (`J2` topo / `J3` fundo).
 
 ---
 
@@ -24,6 +24,7 @@
 | **U10** | `TPS2121RUXR` (Power Mux, DNP Basic) | VQFN-HR-12 (`RUX`) | `2.0 × 2.5` | `2.0 × 2.5` | `~2.8 × 3.3` | `0.40/0.50` | `LoRa_DualBand_Custom:TI_VQFN-HR-12_2.0x2.5mm_RUX` | [x] *(rever contra TI RUX0012A em KiCad)* |
 | **U11** | `SN74CB3Q3126PWR` (UART Switch `Ioff`) | TSSOP-14 | `5.0 × 4.4` | `5.0 × 6.4` | `~5.8 × 7.0` | `0.65` | `Package_SO:TSSOP-14_4.4x5mm_P0.65mm` | [x] |
 | **U12** | `93LC56BT-I/SN` (EEPROM FT4232HL) | SOIC-8 | `4.9 × 3.9` | `4.9 × 6.0` | `~5.6 × 6.6` | `1.27` | `Package_SO:SOIC-8_3.9x4.9mm_P1.27mm` | [x] |
+| **U13** | `TPS3839K33DBZR` (Supervisor `2.93 V / 200 ms`) | SOT-23-3 | `2.9 × 1.3` | `2.9 × 2.4` | `~3.5 × 3.0` | `0.95` | `Package_TO_SOT_SMD:SOT-23` (`DBG_3V3 → DBG_BUS_EN`) | [x] |
 | **FL1** | `LFCN-490+` (433 MHz LPF, 8.5 W) | FV1206 LTCC | `3.2 × 1.6` | `3.2 × 1.6` | `~4.3 × 3.1` | — | `Filter:Filter_Mini-Circuits_FV1206` | [x] |
 | **FL2, FL3** | `HFCN-740+` (HPF 7 W) + `LFCN-900+` (LPF 10 W) | FV1206 LTCC | `3.2 × 1.6` | `3.2 × 1.6` | `~4.3 × 3.1` | — | `Filter:Filter_Mini-Circuits_FV1206` (BPF 780–900 MHz bidirecional) | [x] |
 | **Y1/Y2/Y3** | `ABM8G` `12 / 24 / 16 MHz` | SMD 4-pin (`3225`) | `3.2 × 2.5` | `3.2 × 2.5` | `+0.5 mm` | — | `Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm` | [x] |
@@ -81,12 +82,15 @@
   - [x] `M_LOG_TX` / `M_LOG_RX`: `R50 = 100 kΩ` pull-up → `3V3_MCU` evita flutuação quando `U11` está em Hi-Z.
 - [x] **Bus SWD Target (`SWDIO`, `SWCLK`)**: `R9 = 10 kΩ` pull-up em `SWDIO`, `R10 = 10 kΩ` pull-down em `SWCLK / PA14-BOOT0`.
 
-### 2.3 Debugger (`U7` — `STM32U073CCT6`) e Isolamento (`U8`, `U9`, `U11`, `J5`)
-- [x] **`DEBUG_EN`**: `R11 = 10 kΩ` pull-down → `GND` (default = Debugger OFF).
+### 2.3 Debugger (`U7` — `STM32U073CCT6`) e Sequenciamento Seguro (`U8`, `U9`, `U11`, `U13`, `J5`)
+- [x] **`DEBUG_EN`**: `R11 = 10 kΩ` pull-down → `GND` (default = Debugger OFF). Liga **apenas `U9.ON`** (NUNCA liga `U8`/`U11` diretamente!).
 - [x] **`J5` (`3V3` → `DEBUG_EN`)**: `R52 = 1 kΩ` em série no lado `3V3` para proteção contra curto acidental.
 - [x] **`PROBE_BOOT0` (`PF3-BOOT0`, pino 44)**: `R13 = 10 kΩ` pull-down → `GND`.
 - [x] **`PROBE_NRST` (`PF2-NRST`, pino 7)**: `C3 = 100 nF` → `GND`.
-- [x] **`U8`, `U9`, `U11` polaridade de Enable**: TODOS ativos-ALTO (`TPS22918 ON`, `SN74CB3Q3126 1OE..4OE`), diretamente comandados por `DEBUG_EN` sem inversor!
+- [x] **Sequenciamento retardado dependente de `DBG_3V3` (`U13` = `TPS3839K33DBZR`)**:
+  - `U13` monitoriza `DBG_3V3` (com `C67 = 100 nF`) e gera **`DBG_BUS_EN`** (`R58 = 100 kΩ` pull-down, `TP17` para osciloscópio).
+  - **Power-Up:** `U8` e `U11` permanecem em Hi-Z até `DBG_3V3 > 2.93 V` estabilizar **+ atraso fixo de `200 ms`**, ligando depois com flanco digital rápido (`< 20 ns`, cumprindo `Δt/Δv` do `SN74CB3Q3126`).
+  - **Power-Down:** Assim que `DBG_3V3 < 2.93 V`, `U13` leva `DBG_BUS_EN → 0 V` em `< 20 µs`, isolando `U8`/`U11` **antes de `U7` perder alimentação**!
 
 ---
 
@@ -95,11 +99,13 @@
 - [x] **`U1` (`FT4232HL`)**: `FB3`/`FB4` (`BLM18PG601SN1D`) + `C43..C46` (`4.7 µF + 100 nF` em `VPHY` e `VPLL`), `C47..C50` (`4.7 µF + 3× 100 nF` em `VCORE`), `C51..C55` (`4.7 µF + 4× 100 nF` em `3V3_FTDI`), `C56` (`100 nF` em `U12`).
 - [x] **`U2` (`STM32G0B1RET6`)**: `C59` (`100 nF`), `C60` (`1 µF` `VREF+`), `C61` (`4.7 µF` bulk) + `C57`/`C58` (`18 pF C0G` no cristal `16 MHz` `Y3`).
 - [x] **`U3` (`E22-400M22S`) & `U4` (`E22-900M22S`)**: `C70`/`C72` (`22 µF` 0805 X5R `GRM21BR61A226ME44L`) + `C71`/`C73` (`100 nF`) atrás de `FB1`/`FB2` (`BLM21PG601SN1D`).
-- [x] **`U5` (`TPS562201DDCR`)**: `C24` (`10 µF` 0805 16 V) + `C25` (`100 nF`) em `SYS_5V`, `C23` (`100 nF` `VBST`), `C26`/`C27` (`2× 22 µF` 0805) + `C28` (`100 nF`) em `U5_3V3_OUT`.
+- [x] **`U5` (`TPS562201DDCR`)**: `C24` (`4.7 µF` 0805 16 V X7R `GRM21BR71C475KA73L`) + `C25` (`100 nF`) em `SYS_5V`, `C23` (`100 nF` `VBST`), `C26`/`C27` (`2× 22 µF` 0805) + `C28` (`100 nF`) em `U5_3V3_OUT`.
 - [x] **`U6` (`USB2422-I/MJ`)**: `C35..C37` (`3× 100 nF`) + `C38` (`4.7 µF`) em `3V3_HUB`, `C33` (`1 µF` `CRFILT`), `C34` (`1 µF` `PLLFILT`), `C30`/`C31` (`18 pF C0G` no `24 MHz` `Y2`).
 - [x] **`U7` (`STM32U073CCT6`)**: `C4..C10` (`5× 100 nF` + `1 µF` `VDDA` + `4.7 µF` bulk) colocados na `B.Cu` imediatamente sob `U7`.
-- [x] **`U8`, `U9`, `U11`**: `C65`/`C66` (`100 nF`), `C63`/`C64` (`1 µF` `VIN`/`VOUT` de `U9`), `C62` (`1 nF` `CT` soft-start de `U9`).
-- [x] **`U10` (`TPS2121RUXR`) & `VBUS`/`SYS_5V`**: `C21 = 4.7 µF` em `VBUS` (`≤ 10 µF` USB spec!); `C22 = 4.7 µF` em `VBUS_EXT` (DNP Basic); **`C1A` + `C1B` (`2× 220 µF` 1210 `GRM32ER60J227ME05L` = `440 µF`, DNP Basic / Fit Full)** exclusivamente em `SYS_5V` após soft-start/ILIM de `U10`!
+- [x] **`U8`, `U9`, `U11`, `U13`**: `C65`/`C66` (`100 nF`), `C67` (`100 nF` em `U13`), `C63`/`C64` (`1 µF` `VIN`/`VOUT` de `U9`), `C62` (`1 nF` `CT` soft-start de `U9`).
+- [x] **`U10` (`TPS2121RUXR`) & Inrush `VBUS`/`SYS_5V` (Basic & Full)**:
+  - **Variante `Basic` (`SJ1` fechado):** `C21 (1 µF)` + `C24 (4.7 µF)` + `C25 (0.1 µF)` = **`5.8 µF` total visto em `VBUS`** (cumpre rigorosamente o limite `≤ 10 µF` da norma USB 2.0!).
+  - **Variante `Full` (`SJ1` aberto, `U10` montado):** `VBUS` vê apenas `C21 = 1 µF`; `C22 = 4.7 µF` em `VBUS_EXT`; **`C1A` + `C1B` (`2× 220 µF` 1210 = `440 µF`, DNP Basic / Fit Full)** protegidos atrás do soft-start (`C20 = 22 nF`) e `ILM` (`R28 = 15 kΩ`) de `U10`!
 
 ---
 
@@ -144,9 +150,9 @@
 - [x] **Filtragem RF 433 MHz (`FL1` = Mini-Circuits `LFCN-490+`, LTCC `FV1206`, `8.5 W / +39 dBm`)**: filtro passa-baixo `DC–490 MHz` (`IL ≤ 1.2 dB @ 433 MHz`) que atenua a **2.ª harmónica em 866–868 MHz em `~35–40 dB`** (e `≥ 40 dB` em `880–2500 MHz`).
 - [x] **Filtragem RF 868 MHz (`FL2` `HFCN-740+` + `FL3` `LFCN-900+`, LTCC `FV1206`, `7 W / +38.5 dBm`)**: **filtro passa-banda (BPF) bidirecional `780–900 MHz`** capaz de suportar `+22 dBm TX` com enorme margem térmica (ao contrário de filtros SAW comuns limitados a `+10..+15 dBm`!), oferecendo **`≥ 40 dB` de rejeição em `433 MHz`** (protege o recetor contra saturação) e **`≥ 30–35 dB` na 2.ª harmónica em `1736 MHz`**!
 - [x] **Conectores SMA em lados opostos da placa**: `J2` (`433 MHz`) montado na aresta **superior (`Y = 50 mm`)** e `J3` (`868 MHz`) montado na aresta **inferior (`Y = 85 mm`)** — prontos para **antenas articuladas a `90°`** (polarização cruzada ortogonal).
-- [x] **Separação física + Via Stitching GND + Pistas RF `50 Ω` na `F.Cu`**: `U3` e `U4` separados por corredor com cerca contínua de vias GND (`Y = 67.5 mm`, passo `2.2 mm`), `In1.Cu` e `In2.Cu` em `GND` sólido sob toda a zona RF, todas as 7 nets RF (`RF_A_MOD → FL1 → R_RF_A → J2`, `RF_B_MOD → FL2 → FL3 → R_RF_B → J3`) 100% roteadas em `F.Cu` (`0.35 mm`, sem vias de sinal).
+- [x] **Separação física + Via Stitching GND + Pistas RF na `F.Cu`**: `U3` e `U4` separados por corredor com cerca contínua de vias GND (`Y = 67.5 mm`, passo `2.2 mm`), `In1.Cu` e `In2.Cu` em `GND` sólido sob toda a zona RF, todas as 7 nets RF (`RF_A_MOD → FL1 → R_RF_A → J2`, `RF_B_MOD → FL2 → FL3 → R_RF_B → J3`) 100% roteadas em `F.Cu` sem vias de sinal.
 - [x] **Filtragem da alimentação RF**: `FB1` e `FB2` (`BLM21PG601SN1D`, `600 Ω @ 100 MHz`, `2 A`) + `22 µF` + `100 nF` em `U3` e `U4`.
-- [ ] **Afinação CPWG `50 Ω` e medição VNA/Espectro**: ajustar largura exata de `50 Ω` para o prepreg final do fabricante (PCBWay), adicionar vias de guarda ao longo das pistas RF em KiCad e medir isolamento `S21` entre `J2` e `J3` e conformidade ETSI EN 300 220 em laboratório.
+- [ ] **⚠️ OBRIGATÓRIO PRÉ-FABRICO — Confirmar `50 Ω` no Stackup Real da PCBWay**: a largura atual de `0.35 mm` (para `H = 0.21 mm`, `εr = 4.5`) **NÃO garante por si só `50 Ω`**! Recalcular a largura exata e o gap CPWG no calculador de impedância da **PCBWay** com o prepreg real contratado, contratar *Impedance Control (`50 Ω` RF / `90 Ω` USB)*, adicionar vias de guarda ao longo das pistas RF no KiCad e medir `S11`/`S21` + conformidade ETSI EN 300 220 em laboratório.
 - [ ] **Proteção adicional por Firmware — Gestor de Coexistência RF no `STM32G0B1RET6` (`U2`)**:
   Implementar inicialmente a política conservadora abaixo até validar em laboratório o isolamento real entre antenas e a dessensibilização do recetor:
 
@@ -170,10 +176,13 @@
   - RX Dual (dbg OFF): `I_3V3 ≈ 135 mA` → `I_5V ≈ 116 mA` (@ 4.5 V, η=85%).
   - 1× TX `+22 dBm` + 1× RX: `I_3V3 ≈ 275 mA` → `I_5V ≈ 237 mA`.
   - Pior caso 2× TX `+22 dBm` simultâneo + Debugger ON: `I_3V3 ≈ 440 mA` (`1.45 W`) → `I_5V ≈ 380–450 mA`.
-- [x] **Buck `U5` (`TPS562201DDCR`)**: `2.0 A` contínuos (>4× margem), síncrono, entrada `4.5–17 V` (resiste a picos USB hot-plug!).
+- [x] **Buck `U5` (`TPS562201DDCR`)**: `2.0 A` contínuos (>4× margem), síncrono, entrada `4.5–17 V` (resiste a picos USB hot-plug!). *(Nota: `2 A` é a capacidade do regulador, **NÃO** o limite da porta USB OTG do telemóvel!)*
 - [x] **Power Mux `U10` (`TPS2121RUXR`, DNP Basic)**: `4.5 A`, `R_ON ≈ 56 mΩ`, `ILM = 15 kΩ (~1.5 A)`, `OVLO ≈ 5.9 V`, bloqueio de corrente reversa entre `J1` e `J6`.
-- [x] **Load Switch `U9` (`TPS22918DBVR`)**: `2 A`, soft-start com `C62 = 1 nF` + QOD (descarga rápida ao desligar `J5`).
-- [ ] Validar em bancada que o firmware só autoriza TX RF após `USB_PWREN_N = 0` / `USB_SUSP = 0` e respeita a política de coexistência (`TX+TX` bloqueado quando alimentado apenas por OTG sem `J6`).
+- [x] **Load Switch `U9` (`TPS22918DBVR`) + Supervisor `U13` (`TPS3839K33DBZR`)**: `2 A`, soft-start com `C62 = 1 nF` + QOD + atraso de `200 ms` antes de ligar `U8`/`U11`.
+- [ ] **⚠️ OBRIGATÓRIO EM BANCADA — Validação USB OTG (Versões `Basic` e `Full`)**:
+  - [ ] Medir **corrente de arranque (*inrush*)** no osciloscópio ao ligar a um smartphone OTG tanto na variante **`Basic`** (`5.8 µF` diretos em `VBUS`) como na **`Full`** (`U10` soft-start + `440 µF` em `SYS_5V`).
+  - [ ] Confirmar **consumo pré-enumeração `≤ 100 mA`** e que `U2` só autoriza TX RF após enumeração USB (`USB_PWREN_N = 0` / `USB_SUSP = 0`).
+  - [ ] Medir **consumo máximo real em OTG** (típico smartphone limita a `300–500 mA`): validar `1× TX +22 dBm` sem *brownout* e confirmar que `2× TX` simultâneo fica bloqueado pelo gestor de coexistência quando sem alimentação auxiliar `J6`.
 
 ---
 
@@ -220,10 +229,16 @@
 
 ---
 
-## 10. Gate Final de Aprovação (Antes de Encomendar a Placa DEV)
+## 10. Gate Final de Aprovação (O que Fazer Antes de Fabricar)
 
 - [x] Esquemático migrado para **KiCad 8 nativo (`KiCad/LoRa_DualBand.kicad_sch`)** — zero símbolos lógicos da cache v4.
-- [x] `KiCad/Libraries/components.csv` (210 linhas) e `Manufacturing/BOM_PCBWay_DRAFT.csv` (59 linhas, 0 TBD) sincronizados 100% com o esquemático e a PCB.
-- [ ] **Acabamento manual do roteamento no KiCad PCB Editor**: concluir os `45` pares de sinal pendentes (em particular `U6` QFN-24, `U10` VQFN-12, `SWDIO`/`SWCLK`/`NRST` e `HUB1_DP`/`HUB2_DM`) + afinação `90 Ω` USB / `50 Ω` RF + preencher zonas (`B`).
-- [ ] Executar CI GitHub Actions (`ci/check_libraries.py` = `0`, `kicad-cli sch erc` = `0`, `kicad-cli pcb drc` = `0` erros e `0` unconnected items).
-- [ ] Inspecionar visualmente PDFs (esquemático + PCB Top/Bottom) e rever rotações do ficheiro CPL no visualizador da PCBWay/JLCPCB antes de autorizar produção!
+- [x] `KiCad/Libraries/components.csv` (214 linhas) e `Manufacturing/BOM_PCBWay_DRAFT.csv` (0 TBD) sincronizados 100% com o esquemático e a PCB.
+- [ ] **Terminar o routing** no KiCad PCB Editor e eliminar **todas** as ligações pendentes (*unconnected items = 0*, preencher zonas com `B`).
+- [ ] **Executar ERC e DRC oficiais do KiCad** (`kicad-cli sch erc` / `kicad-cli pcb drc` / CI GitHub Actions com **0 erros** e `ci/check_libraries.py = 0`).
+- [ ] **Validar todos os pinouts físicos** contra os datasheets oficiais dos fabricantes (`U1..U13`, `FL1..FL3`, `J1..J7`, especial atenção a `E22` Top View, `TPS2121RUXR` TI `RUX0012A`, `TPS3839K33DBZR` DBZ e `J1` USB-C macho).
+- [ ] **Criar o projeto STM32CubeMX** para `STM32G0B1RET6` (`U2`) e `STM32U073CCT6` (`U7`) para confirmar na prática todas as **4× USARTs com RTS/CTS + LPUART2, 2× SPI, canais DMA (`DMAMUX`) e interrupções `EXTI`**.
+- [ ] **Validar o routing diferencial USB de `90 Ω ±10%`** (largura/espaçamento no stackup real + *length matching* `≤ 0.15 mm` em `USB_DP/DM`, `HUB1_DP/DM`, `HUB2_DP/DM`).
+- [ ] **Adicionar / verificar via stitching nas zonas RF** (cerca central entre `U3`/`U4`, vias de guarda ao longo das pistas RF `50 Ω` e vias térmicas/GND sob `U6` e `FL1..FL3`).
+- [ ] **Confirmar a impedância de `50 Ω`** com o **stackup real da PCBWay** (recalcular largura + gap CPWG e ativar *Impedance Control* no fabrico — a largura preliminar de `0.35 mm` não garante `50 Ω` por si só!).
+- [ ] **Rever alimentação, isolamento (`U13` atraso `200 ms` → `U8`/`U11`) e consumo/inrush através do USB-C** (variantes **Basic** e **Full**, enumeração USB, corrente pré-enumeração `≤ 100 mA` e limite real de porta OTG do telemóvel).
+- [ ] **Inspecionar visualmente PDFs (esquemático + PCB Top/Bottom) e rotações CPL** no visualizador da PCBWay/JLCPCB antes de autorizar produção!

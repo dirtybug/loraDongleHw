@@ -20,7 +20,7 @@ R27,RC0603FR-0724K9L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad libr
 R28,RC0603FR-0715KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
 R29,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
 C20,CC0603KRX7R9BB223,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
-C21,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C21,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
 C22,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
 C1A,GRM32ER60J227ME05L,Device:C,Capacitor_SMD:C_1210_3225Metric,Official KiCad library
 C1B,GRM32ER60J227ME05L,Device:C,Capacitor_SMD:C_1210_3225Metric,Official KiCad library
@@ -30,7 +30,7 @@ R30,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad libr
 R31,RC0603FR-0733K2L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
 R32,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
 C23,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
-C24,GRM21BR61C106KE15L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
+C24,GRM21BR71C475KA73L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
 C25,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
 C26,GRM21BR61A226ME44L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
 C27,GRM21BR61A226ME44L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
@@ -132,6 +132,9 @@ C64,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad li
 J5,61300211121,Connector_Generic:Conn_01x02,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,Official KiCad library
 R52,RC0603FR-071KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
 R11,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+U13,TPS3839K33DBZR,LoRa_DualBand_Custom:TPS3839K33,Package_TO_SOT_SMD:SOT-23,Project custom verified
+C67,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R58,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
 U8,SN74CB3Q3126PWR,LoRa_DualBand_Custom:SN74CB3Q3126,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,Project custom verified
 C65,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
 U11,SN74CB3Q3126PWR,LoRa_DualBand_Custom:SN74CB3Q3126,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,Project custom verified
@@ -206,6 +209,7 @@ TP13,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
 TP14,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
 TP15,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
 TP16,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP17,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
 FID1,,LoRa_DualBand_Custom:Fiducial,Fiducial:Fiducial_1mm_Mask2mm,Project custom verified
 FID2,,LoRa_DualBand_Custom:Fiducial,Fiducial:Fiducial_1mm_Mask2mm,Project custom verified
 FID3,,LoRa_DualBand_Custom:Fiducial,Fiducial:Fiducial_1mm_Mask2mm,Project custom verified
