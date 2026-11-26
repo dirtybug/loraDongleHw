@@ -1,6 +1,6 @@
 # R2 hardware requirements (draft)
-- STM32G0B1CBT6, two independent USARTs with RTS/CTS and DMA, two SPI buses.
-- FT2232H dual UART, one port per radio; EEPROM configuration to validate.
+- STM32G0B1RET6, four independent USARTs with RTS/CTS and DMA, fifth USART for debug logs, two SPI buses; pin mux pending.
+- FT4232H quad UART: A shared AT control, B 433 MHz data, C 868 MHz data, D selectable native mesh protocol. RP2040 UART bridge for logs. EEPROM configuration to validate.
 - Two SX1262 TCXO modules, 433 MHz and 868 MHz, independent 50 ohm SMA female connectors.
 - USB-C male with extended narrow neck for phone cases; preliminary board 90 x 35 mm, four layers.
 - USB2422 hub and RP2040 CMSIS-DAP onboard debugger; external SWD isolation and BOOTSEL.
@@ -13,3 +13,5 @@
 - Firmware and Android belong to separate repositories. Target Keil RTX5.
 - Original reference: https://github.com/Ropixon/AT-LoRa-USB-Dongle (do not redistribute original design without verified permission).
 - No fabrication approval until complete schematic, real footprints, routing, ERC/DRC and engineering review. Variant-specific BOM/CPL generation still needs implementation.
+
+- Shared control commands explicitly identify target radio (433/868 or ALL where meaningful); serialize per-radio state transitions and arbitrate raw/native mesh ownership. No debug text on binary ports.
