@@ -31,3 +31,13 @@ R10,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
 R11,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
 C2,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
 R12,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+R13,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
+C3,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C4,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C5,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C6,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C7,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C8,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C9,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+C10,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
+J7,TBD,Connector_Generic:Conn_01x05,Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical,Custom pinout verify
