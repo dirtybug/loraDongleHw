@@ -976,4 +976,67 @@ Text Notes 1200 15500 0 60 ~ 0
 Bridge-view UART labels: bridge TX/RTS to target RX/CTS. DEBUG_EN high enables; J5 open defaults OFF.
 Text Notes 1200 15700 0 60 ~ 0
 J5: separate jumpers 3V3 to DEBUG_EN and GND to BOOTSEL. Never short 3V3 to GND.
+Wire Wire Line
+	11650 5100 11900 5100
+Text Label 11650 5100 0 35 ~ 0
+3V3
+Wire Wire Line
+	11650 5500 11900 5500
+Text Label 11650 5500 0 35 ~ 0
+GND
+Wire Wire Line
+	11650 1750 11900 1750
+Text Label 11650 1750 0 35 ~ 0
+BOOT0
+Wire Wire Line
+	11650 3400 11900 3400
+Text Label 11650 3400 0 35 ~ 0
+A_RXEN
+Wire Wire Line
+	11650 3500 11900 3500
+Text Label 11650 3500 0 35 ~ 0
+A_TXEN
+Wire Wire Line
+	11650 3600 11900 3600
+Text Label 11650 3600 0 35 ~ 0
+B_RXEN
+Wire Wire Line
+	11650 3700 11900 3700
+Text Label 11650 3700 0 35 ~ 0
+B_TXEN
+Wire Wire Line
+	15150 1600 15400 1600
+Text Label 15150 1600 0 35 ~ 0
+A_RXEN
+Wire Wire Line
+	15150 2000 15400 2000
+Text Label 15150 2000 0 35 ~ 0
+A_TXEN
+Wire Wire Line
+	15150 4100 15400 4100
+Text Label 15150 4100 0 35 ~ 0
+B_RXEN
+Wire Wire Line
+	15150 4500 15400 4500
+Text Label 15150 4500 0 35 ~ 0
+B_TXEN
+$Comp
+L LoRa_DualBand:PASSIVE_R R12
+U 1 1 43D0509
+P 16600 11900
+F 0 "R12" H 16600 11750 50 0000 C CNN
+F 1 "10k" H 16600 12050 50 0000 C CNN
+	1 16600 11900
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	15750 11900 16250 11900
+Text Label 15750 11900 0 40 ~ 0
+BOOT0
+Wire Wire Line
+	16950 11900 17450 11900
+Text Label 16950 11900 0 40 ~ 0
+GND
+Text Notes 15500 11100 0 60 ~ 0
+BOOT0 and RF control: logical only; verify physical AF and module MPN.
 $EndSCHEMATC
