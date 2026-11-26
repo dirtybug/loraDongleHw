@@ -10,7 +10,8 @@ with open("KiCad/Libraries/components.csv", newline="") as f:
         for field in ("Symbol","Footprint"):
             value=row[field]
             if not value:
-                print(f"{ref}: {field} unresolved")
+                print(f"{ref}: {field} UNRESOLVED")
+                missing.append(f"{ref}:{field}")
                 continue
             lib,name=value.split(":",1)
             if field=="Symbol":
@@ -21,4 +22,5 @@ with open("KiCad/Libraries/components.csv", newline="") as f:
                 ok=path.exists()
             print(f"{ref}: {value}: {'OK' if ok else 'MISSING'}")
             if not ok: missing.append(value)
+print(f"Unresolved or missing entries: {len(missing)}")
 sys.exit(bool(missing))
