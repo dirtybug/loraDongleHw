@@ -6,3 +6,18 @@ U4,E22-900M22S,,,Candidate SX1262 - TCXO and land pattern pending
 U6,USB2422,,,Exact package and symbol pending
 U7,RP2040,MCU_RaspberryPi:RP2040,Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,Verify installed library
 U10,TPS2121RUXR,,,Manufacturer RUX land pattern required
+U5,TBD,,,Buck selection pending
+U8,TBD,,,SWD isolation selection pending
+U9,TBD,,,Load switch selection pending
+U11,TBD,,,UART isolation selection pending
+J1,TBD,,,USB-C plug selection pending
+J2,TBD,,,SMA selection pending
+J3,TBD,,,SMA selection pending
+J4,TBD,,,Cortex debug connector selection pending
+J5,TBD,,,Debugger control selection pending
+J6,TBD,,,Auxiliary USB-C selection pending
+R1,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
+R2,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
+R3,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
+SJ1,TBD,,,Bypass footprint pending
+C1,TBD,,,Bulk capacitor selection pending
