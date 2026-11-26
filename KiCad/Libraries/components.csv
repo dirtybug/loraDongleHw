@@ -1,43 +1,211 @@
 Reference,MPN,Symbol,Footprint,Status
-U1,FT4232HL,Interface_USB:FT4232H,Package_QFP:LQFP-64_10x10mm_P0.5mm,Verify installed library
-U2,STM32G0B1RET6,MCU_ST_STM32G0:STM32G0B1RETx,Package_QFP:LQFP-64_10x10mm_P0.5mm,Verify installed library
-U3,E22-400M22S,,,Candidate SX1268 - TCXO and land pattern pending
-U4,E22-900M22S,,,Candidate SX1262 - TCXO and land pattern pending
-U6,USB2422,,,Exact package and symbol pending
-U7,STM32U073CCT6,MCU_ST_STM32U0:STM32U073CCTx,Package_QFP:LQFP-48_7x7mm_P0.5mm,Local physical pin symbol per ST figure 5; official library candidate and circuit validation pending
-U10,TPS2121RUXR,,,Manufacturer RUX land pattern required
-U5,TBD,,,Buck selection pending
-U8,TBD,,,SWD isolation selection pending
-U9,TBD,,,Load switch selection pending
-U11,TBD,,,UART isolation selection pending
-J1,TBD,,,USB-C plug selection pending
-J2,TBD,,,SMA selection pending
-J3,TBD,,,SMA selection pending
-J4,TBD,,,Cortex debug connector selection pending
-J5,TBD,,,Debugger control selection pending
-J6,TBD,,,Auxiliary USB-C selection pending
-R1,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
-R2,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
-R3,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Verify
-SJ1,TBD,,,Bypass footprint pending
-C1,TBD,,,Bulk capacitor selection pending
-R4,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R5,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R6,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R7,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R8,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R9,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R10,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R11,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-C2,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-R12,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-R13,TBD,Device:R,Resistor_SMD:R_0603_1608Metric,Preliminary verify
-C3,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C4,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C5,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C6,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C7,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C8,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C9,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-C10,TBD,Device:C,Capacitor_SMD:C_0603_1608Metric,Preliminary verify
-J7,TBD,Connector_Generic:Conn_01x05,Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical,Custom pinout verify
+J1,DX07P024AJ1,Connector:USB_C_Plug_USB2.0,Connector_USB:USB_C_Plug_JAE_DX07P024AJ1,Official KiCad library
+R1,RC0603FR-075K1L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+D1,USBLC6-2SC6,Power_Protection:USBLC6-2SC6,Package_TO_SOT_SMD:SOT-23-6,Official KiCad library
+D2,SMAJ5.0A,Device:D_TVS,Diode_SMD:D_SMA,Official KiCad library
+J6,TYPE-C-31-M-12,Connector:USB_C_Receptacle_USB2.0_16P,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,Official KiCad library
+R2,RC0603FR-075K1L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R3,RC0603FR-075K1L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+D3,SMAJ5.0A,Device:D_TVS,Diode_SMD:D_SMA,Official KiCad library
+U10,TPS2121RUXR,LoRa_DualBand_Custom:TPS2121RUXR,LoRa_DualBand_Custom:TI_VQFN-HR-12_2.0x2.5mm_RUX,Project custom verified
+SJ1,,Jumper:SolderJumper_2_Bridged,Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm,Official KiCad library
+R20,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R21,RC0603FR-0733K2L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R22,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R23,RC0603FR-0733K2L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R24,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R25,RC0603FR-0724K9L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R26,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R27,RC0603FR-0724K9L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R28,RC0603FR-0715KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R29,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C20,CC0603KRX7R9BB223,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C21,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C22,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C1A,GRM32ER60J227ME05L,Device:C,Capacitor_SMD:C_1210_3225Metric,Official KiCad library
+C1B,GRM32ER60J227ME05L,Device:C,Capacitor_SMD:C_1210_3225Metric,Official KiCad library
+U5,TPS562201DDCR,LoRa_DualBand_Custom:TPS562201,Package_TO_SOT_SMD:SOT-23-6,Project custom verified
+L1,IHLP1616ABER3R3M01,Device:L,Inductor_SMD:L_Vishay_IHLP-1616,Official KiCad library
+R30,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R31,RC0603FR-0733K2L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R32,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C23,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C24,GRM21BR61C106KE15L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
+C25,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C26,GRM21BR61A226ME44L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
+C27,GRM21BR61A226ME44L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
+C28,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R_PWR_3V3,RC0805JR-070RL,Device:R,Resistor_SMD:R_0805_2012Metric,Official KiCad library
+R_PWR_U6,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R_PWR_U1,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R_PWR_U2,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R_PWR_U7,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+FB1,BLM21PG601SN1D,Device:FerriteBead,Resistor_SMD:R_0805_2012Metric,Official KiCad library
+FB2,BLM21PG601SN1D,Device:FerriteBead,Resistor_SMD:R_0805_2012Metric,Official KiCad library
+LED1,LTST-C190KGKT,Device:LED,LED_SMD:LED_0603_1608Metric,Official KiCad library
+R33,RC0603FR-071KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+LED2,LTST-C190KFKT,Device:LED,LED_SMD:LED_0603_1608Metric,Official KiCad library
+R34,RC0603FR-071KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+U6,USB2422-I/MJ,LoRa_DualBand_Custom:USB2422,Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,Project custom verified
+Y2,ABM8G-24.000MHZ-4Y-T3,Device:Crystal_GND24,Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm,Official KiCad library
+C30,CC0603JRNPO9BN180,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C31,CC0603JRNPO9BN180,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R35,RC0603FR-0712KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R36,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R37,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R38,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C32,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R39,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R40,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R41,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R42,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R43,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C33,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C34,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C35,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C36,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C37,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C38,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+U1,FT4232HL,Interface_USB:FT4232H,Package_QFP:LQFP-64_10x10mm_P0.5mm,Official KiCad library
+Y1,ABM8G-12.000MHZ-4Y-T3,Device:Crystal_GND24,Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm,Official KiCad library
+C40,CC0603JRNPO9BN180,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C41,CC0603JRNPO9BN180,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R44,RC0603FR-0712KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R45,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C42,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+FB3,BLM18PG601SN1D,Device:FerriteBead,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+FB4,BLM18PG601SN1D,Device:FerriteBead,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C43,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C44,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C45,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C46,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C47,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C48,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C49,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C50,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C51,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C52,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C53,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C54,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C55,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+U12,93LC56BT-I/SN,Memory_EEPROM:93LCxxC,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,Official KiCad library
+R46,RC0603FR-072K2L,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R47,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R48,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R49,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C56,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R101,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R102,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R103,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R104,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R105,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R106,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R107,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R108,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R109,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R110,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R111,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R112,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R113,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R114,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R115,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R116,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+U2,STM32G0B1RET6,MCU_ST_STM32G0:STM32G0B1RETx,Package_QFP:LQFP-64_10x10mm_P0.5mm,Official KiCad library
+Y3,ABM8G-16.000MHZ-4Y-T3,Device:Crystal_GND24,Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm,Official KiCad library
+C57,CC0603JRNPO9BN180,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C58,CC0603JRNPO9BN180,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R4,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C2,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R9,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R10,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R50,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C59,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C60,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C61,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+LED3,LTST-C190TBKT,Device:LED,LED_SMD:LED_0603_1608Metric,Official KiCad library
+R51,RC0603FR-071KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+J4,FTSH-105-01-L-DV-K,Connector_Generic:Conn_02x05_Odd_Even,Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical_SMD,Official KiCad library
+U9,TPS22918DBVR,LoRa_DualBand_Custom:TPS22918,Package_TO_SOT_SMD:SOT-23-6,Project custom verified
+C62,CC0603KRX7R9BB102,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C63,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C64,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+J5,61300211121,Connector_Generic:Conn_01x02,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,Official KiCad library
+R52,RC0603FR-071KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R11,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+U8,SN74CB3Q3126PWR,LoRa_DualBand_Custom:SN74CB3Q3126,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,Project custom verified
+C65,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+U11,SN74CB3Q3126PWR,LoRa_DualBand_Custom:SN74CB3Q3126,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,Project custom verified
+C66,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R117,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R118,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+U7,STM32U073CCT6,LoRa_DualBand_Custom:STM32U073CCT6,Package_QFP:LQFP-48_7x7mm_P0.5mm,Project custom verified
+R13,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+C3,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C4,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C5,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C6,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C7,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C8,CC0603KRX7R6BB105,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C9,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+C10,CC0603MRX5R6BB475,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+LED4,LTST-C190KGKT,Device:LED,LED_SMD:LED_0603_1608Metric,Official KiCad library
+R53,RC0603FR-071KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+J7,61300511121,Connector_Generic:Conn_01x05,Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical,Official KiCad library
+U3,E22-400M22S,LoRa_DualBand_Custom:E22-400M22S,LoRa_DualBand_Custom:Ebyte_E22-M22S_14x20mm,Project custom verified
+FL1,LFCN-490+,LoRa_DualBand_Custom:MiniCircuits_FV1206_Filter,Filter:Filter_Mini-Circuits_FV1206,Project custom verified
+R_RF_A,RC0402JR-070RL,Device:R,Resistor_SMD:R_0402_1005Metric,Official KiCad library
+J2,132289,Connector:Conn_Coaxial,Connector_Coaxial:SMA_Amphenol_132289_EdgeMount,Official KiCad library
+C70,GRM21BR61A226ME44L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
+C71,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R5,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R7,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R54,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R55,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R121,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R122,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R123,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R124,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R125,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R126,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R127,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R128,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R129,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+U4,E22-900M22S,LoRa_DualBand_Custom:E22-900M22S,LoRa_DualBand_Custom:Ebyte_E22-M22S_14x20mm,Project custom verified
+FL2,HFCN-740+,LoRa_DualBand_Custom:MiniCircuits_FV1206_Filter,Filter:Filter_Mini-Circuits_FV1206,Project custom verified
+FL3,LFCN-900+,LoRa_DualBand_Custom:MiniCircuits_FV1206_Filter,Filter:Filter_Mini-Circuits_FV1206,Project custom verified
+R_RF_B,RC0402JR-070RL,Device:R,Resistor_SMD:R_0402_1005Metric,Official KiCad library
+J3,132289,Connector:Conn_Coaxial,Connector_Coaxial:SMA_Amphenol_132289_EdgeMount,Official KiCad library
+C72,GRM21BR61A226ME44L,Device:C,Capacitor_SMD:C_0805_2012Metric,Official KiCad library
+C73,CC0603KRX7R7BB104,Device:C,Capacitor_SMD:C_0603_1608Metric,Official KiCad library
+R6,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R8,RC0603FR-0710KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R56,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R57,RC0603FR-07100KL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R131,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R132,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R133,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R134,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R135,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R136,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R137,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R138,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+R139,RC0603JR-070RL,Device:R,Resistor_SMD:R_0603_1608Metric,Official KiCad library
+TP1,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP2,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP3,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP4,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP5,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP6,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP7,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP8,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP9,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP10,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP11,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP12,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP13,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP14,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP15,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+TP16,,Connector:TestPoint,TestPoint:TestPoint_Pad_D1.0mm,Official KiCad library
+FID1,,LoRa_DualBand_Custom:Fiducial,Fiducial:Fiducial_1mm_Mask2mm,Project custom verified
+FID2,,LoRa_DualBand_Custom:Fiducial,Fiducial:Fiducial_1mm_Mask2mm,Project custom verified
+FID3,,LoRa_DualBand_Custom:Fiducial,Fiducial:Fiducial_1mm_Mask2mm,Project custom verified
