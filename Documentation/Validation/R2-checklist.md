@@ -3,7 +3,7 @@
 - [ ] Verify every STM32G0B1RET6 pin and alternate function against exact package in CubeMX: four USART with RTS/CTS, fifth UART, two SPI, IRQ/BUSY/RESET, RF switch control and DMA.
 - [ ] Complete FT4232HL power rails, 12 MHz clock, EEPROM, REF, TEST and reset per reference design.
 - [ ] Complete USB2422 hub clock, RBIAS, configuration straps, reset, bus/self-power reporting and VBUS sensing.
-- [ ] Complete STM32F072CBT6 power, decoupling, BOOT0, NRST, dedicated programming SWD, USB clock/CRS and USB interface per ST reference; validate CMSIS-DAP plus CDC firmware.
+- [ ] Complete STM32U073CCT6 power, decoupling, BOOT0, NRST, dedicated programming SWD, USB clock/CRS and USB interface per ST reference; validate CMSIS-DAP plus CDC firmware.
 - [ ] Select physical SWD and UART isolation devices, check bidirectional SWDIO and NRST, powered-off leakage and default safe enable state. Test debugger disabled with target powered and vice versa.
 - [ ] Use standard Cortex Debug 10-pin keyed connector, verify pinout and target voltage sensing.
 - [ ] USB-C plug CC termination, ESD, controlled impedance and inrush.
