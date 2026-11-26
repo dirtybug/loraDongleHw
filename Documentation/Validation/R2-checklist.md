@@ -1,0 +1,14 @@
+# R2 design review
+- [ ] Confirm exact RF module MPNs and TCXO voltage, RF switch control and 50-ohm launch.
+- [ ] Verify every STM32 pin and alternate function against exact package; DMA mapping.
+- [ ] Complete FT2232H power rails, clock, EEPROM and reset per reference design.
+- [ ] Complete USB2422 hub clock, configuration, bus/self-power reporting and VBUS sensing.
+- [ ] Complete RP2040 power, flash, boot, SWD reset and isolation.
+- [ ] USB-C plug CC termination, ESD, controlled impedance and inrush.
+- [ ] USB auxiliary input with independent Rd on CC1/CC2 and power mux; mutually exclusive bypass.
+- [ ] Verify power consumption and backfeed in all variants and suspend states.
+- [ ] Place 0603 zero-ohm links and both-side test points on both UARTs, both SPIs and radio control nets.
+- [ ] Isolate subsystem supplies with current-rated links and measure current; prevent GPIO backfeed.
+- [ ] Select actual connector footprints, mechanical clearance and SMA reinforcement.
+- [ ] Complete physical schematic and routed PCB; ERC/DRC, schematic-PCB parity, RF review.
+- [ ] Verify BOM, DNP variants, pick and place and fabrication outputs before approval.
