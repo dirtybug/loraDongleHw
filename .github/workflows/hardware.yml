@@ -1,0 +1,27 @@
+name: Hardware export
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
+      - name: Build KiCad container
+        run: docker build -t lora-hw .
+      - name: Export and validate
+        run: docker run --rm -v "${{ github.workspace }}:/work" lora-hw
+      - name: Upload outputs and validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hardware-${{ github.sha }}
+          path: output/
+          if-no-files-found: warn
