@@ -4,7 +4,7 @@ Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,T
 3,U3,1,E22-400M22S,Ebyte,SX1268 433 MHz candidate,TBD,SMD,Fit,Fit,TCXO and exact module pending
 4,U4,1,E22-900M22S,Ebyte,SX1262 868 MHz candidate,TBD,SMD,Fit,Fit,TCXO and exact module pending
 5,U6,1,USB2422,Microchip,USB hub,QFN24,SMD,Fit,Fit,Ordering suffix TBD
-6,U7,1,STM32F072CBT6,STMicroelectronics,Debugger MCU with internal flash,LQFP48,SMD,Fit,Fit,Proposed
+6,U7,1,STM32U073CCT6,STMicroelectronics,Debugger MCU with internal flash,LQFP48,SMD,Fit,Fit,Proposed
 7,U10,1,TPS2121RUXR,Texas Instruments,Power mux,RUX,SMD,DNP,Fit,Proposed
 8,J1,1,TBD,TBD,USB-C male,TBD,TBD,Fit,Fit,Selection required
 9,"J2,J3",2,TBD,TBD,SMA female 50 ohm,TBD,TBD,Fit,Fit,Selection required
