@@ -1,0 +1,8 @@
+Reference,MPN,Symbol,Footprint,Status
+U1,FT2232HL,Interface_USB:FT2232HL,Package_QFP:LQFP-64_10x10mm_P0.5mm,Verify installed library
+U2,STM32G0B1CBT6,MCU_ST_STM32G0:STM32G0B1CBTx,Package_QFP:LQFP-48_7x7mm_P0.5mm,Verify installed library
+U3,TBD,,,Module selection pending
+U4,TBD,,,Module selection pending
+U6,USB2422,,,Verify library and package
+U7,RP2040,,,Verify library and package
+U10,TPS2121RUXR,,,Verify library and package
