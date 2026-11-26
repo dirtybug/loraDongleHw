@@ -509,11 +509,11 @@ BOOTSEL
 Wire Wire Line
 	8350 5450 8600 5450
 Text Label 8350 5450 0 35 ~ 0
-LOG_TX
+DBG_LOG_TX
 Wire Wire Line
 	8350 5550 8600 5550
 Text Label 8350 5550 0 35 ~ 0
-LOG_RX
+DBG_LOG_RX
 $Comp
 L LoRa_DualBand:U7_RP2040_CMSIS_DAP U7
 U 1 1 41D0259
@@ -592,7 +592,7 @@ $EndComp
 Wire Wire Line
 	700 4450 950 4450
 Text Label 700 4450 0 35 ~ 0
-VBUS
+SYS_5V
 Wire Wire Line
 	700 4550 950 4550
 Text Label 700 4550 0 35 ~ 0
@@ -656,12 +656,161 @@ F 1 "DEBUG_CONTROL" H 4600 5650 50 0000 C CNN
 	1 4600 6000
 	1 0 0 -1
 $EndComp
-Text Notes 1200 8000 0 75 ~ 12
-R2 FUNCTIONAL ONLY - logical pin IDs, not physical pin numbers.
-Text Notes 1200 8300 0 60 ~ 0
-FTDI A: shared AT control; B: 433 data; C: 868 data; D: mesh compatibility.
-Text Notes 1200 8550 0 60 ~ 0
-RP2040 CDC: logs only; CMSIS-DAP: SWD. TX/RX nets named from bridge viewpoint.
-Text Notes 1200 8800 0 60 ~ 0
-Physical pin mux, power variants, isolation links, footprints and routing pending.
+Wire Wire Line
+	6400 7200 6650 7200
+Text Label 6400 7200 0 35 ~ 0
+DBG_LOG_TX
+Wire Wire Line
+	6400 7300 6650 7300
+Text Label 6400 7300 0 35 ~ 0
+DBG_LOG_RX
+Wire Wire Line
+	6400 7400 6650 7400
+Text Label 6400 7400 0 35 ~ 0
+DEBUG_EN
+Wire Wire Line
+	6400 7500 6650 7500
+Text Label 6400 7500 0 35 ~ 0
+3V3
+Wire Wire Line
+	6400 7600 6650 7600
+Text Label 6400 7600 0 35 ~ 0
+GND
+Wire Wire Line
+	8350 7350 8600 7350
+Text Label 8350 7350 0 35 ~ 0
+LOG_TX
+Wire Wire Line
+	8350 7450 8600 7450
+Text Label 8350 7450 0 35 ~ 0
+LOG_RX
+$Comp
+L LoRa_DualBand:U11_UART_IOFF_ISOLATION U11
+U 1 1 42D0300
+P 7500 7400
+F 0 "U11" H 7500 6880 50 0000 C CNN
+F 1 "UART_IOFF_ISOLATION" H 7500 6950 50 0000 C CNN
+	1 7500 7400
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	2650 7150 2900 7150
+Text Label 2650 7150 0 35 ~ 0
+VBUS_EXT
+Wire Wire Line
+	2650 7250 2900 7250
+Text Label 2650 7250 0 35 ~ 0
+CC1_EXT
+Wire Wire Line
+	2650 7350 2900 7350
+Text Label 2650 7350 0 35 ~ 0
+CC2_EXT
+Wire Wire Line
+	2650 7450 2900 7450
+Text Label 2650 7450 0 35 ~ 0
+GND
+$Comp
+L LoRa_DualBand:J6_AUX_USB_C_POWER J6
+U 1 1 42D0301
+P 1800 7300
+F 0 "J6" H 1800 6880 50 0000 C CNN
+F 1 "AUX_USB_C_POWER" H 1800 6950 50 0000 C CNN
+	1 1800 7300
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	3500 7200 3750 7200
+Text Label 3500 7200 0 35 ~ 0
+VBUS
+Wire Wire Line
+	3500 7300 3750 7300
+Text Label 3500 7300 0 35 ~ 0
+VBUS_EXT
+Wire Wire Line
+	3500 7400 3750 7400
+Text Label 3500 7400 0 35 ~ 0
+GND
+Wire Wire Line
+	5450 7300 5700 7300
+Text Label 5450 7300 0 35 ~ 0
+SYS_5V
+$Comp
+L LoRa_DualBand:U10_TPS2121_POWER_MUX_DNP U10
+U 1 1 42D0302
+P 4600 7300
+F 0 "U10" H 4600 6880 50 0000 C CNN
+F 1 "TPS2121_POWER_MUX_DNP" H 4600 6950 50 0000 C CNN
+	1 4600 7300
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	700 9200 950 9200
+Text Label 700 9200 0 35 ~ 0
+VBUS
+Wire Wire Line
+	2650 9200 2900 9200
+Text Label 2650 9200 0 35 ~ 0
+SYS_5V
+$Comp
+L LoRa_DualBand:SJ1_BYPASS_BASIC_ONLY SJ1
+U 1 1 42D0303
+P 1800 9200
+F 0 "SJ1" H 1800 8780 50 0000 C CNN
+F 1 "BYPASS_BASIC_ONLY" H 1800 8850 50 0000 C CNN
+	1 1800 9200
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	3500 9200 3750 9200
+Text Label 3500 9200 0 35 ~ 0
+CC1_EXT
+Wire Wire Line
+	5450 9200 5700 9200
+Text Label 5450 9200 0 35 ~ 0
+GND
+$Comp
+L LoRa_DualBand:R2_RD_5K1 R2
+U 1 1 42D0304
+P 4600 9200
+F 0 "R2" H 4600 8780 50 0000 C CNN
+F 1 "RD_5K1" H 4600 8850 50 0000 C CNN
+	1 4600 9200
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	6400 9200 6650 9200
+Text Label 6400 9200 0 35 ~ 0
+CC2_EXT
+Wire Wire Line
+	8350 9200 8600 9200
+Text Label 8350 9200 0 35 ~ 0
+GND
+$Comp
+L LoRa_DualBand:R3_RD_5K1 R3
+U 1 1 42D0305
+P 7500 9200
+F 0 "R3" H 7500 8780 50 0000 C CNN
+F 1 "RD_5K1" H 7500 8850 50 0000 C CNN
+	1 7500 9200
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	9700 9200 9950 9200
+Text Label 9700 9200 0 35 ~ 0
+SYS_5V
+Wire Wire Line
+	11650 9200 11900 9200
+Text Label 11650 9200 0 35 ~ 0
+GND
+$Comp
+L LoRa_DualBand:C1_BULK_DNP_AFTER_INRUSH C1
+U 1 1 42D0306
+P 10800 9200
+F 0 "C1" H 10800 8780 50 0000 C CNN
+F 1 "BULK_DNP_AFTER_INRUSH" H 10800 8850 50 0000 C CNN
+	1 10800 9200
+	1 0 0 -1
+$EndComp
+Text Notes 1200 10300 0 60 ~ 0
+DRAFT: functional isolation and power topology only; physical circuits and inrush protection pending.
 $EndSCHEMATC
