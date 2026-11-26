@@ -19,3 +19,12 @@ Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,T
 18,"R2,R3",2,TBD,TBD,5.1k auxiliary USB-C Rd,0603,SMD,DNP,Fit,Proposed
 19,U11,1,TBD,TBD,UART powered-off isolation,TBD,SMD,Fit,Fit,Selection required
 20,J5,1,TBD,TBD,Debugger control,TBD,TBD,Fit,Fit,Selection required
+21,R4,1,TBD,TBD,10k STM32 reset pull-up,0603,SMD,Fit,Fit,Preliminary verify
+22,C2,1,TBD,TBD,100n STM32 reset capacitor,0603,SMD,Fit,Fit,Preliminary verify
+23,R5,1,TBD,TBD,10k 433 SPI select idle,0603,SMD,Fit,Fit,Preliminary verify
+24,R6,1,TBD,TBD,10k 868 SPI select idle,0603,SMD,Fit,Fit,Preliminary verify
+25,R7,1,TBD,TBD,10k 433 reset pull-up candidate,0603,SMD,Fit,Fit,Preliminary verify
+26,R8,1,TBD,TBD,10k 868 reset pull-up candidate,0603,SMD,Fit,Fit,Preliminary verify
+27,R9,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
+28,R10,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
+29,R11,1,TBD,TBD,10k Default enabled; jumper to GND disables; active-high load switch required,0603,SMD,Fit,Fit,Preliminary verify
