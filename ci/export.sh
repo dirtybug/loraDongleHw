@@ -7,6 +7,7 @@ kicad-cli version > output/checks/version.txt
 if [[ ! -f "$SCH" ]]; then SCH=KiCad/LoRa_DualBand.sch; fi
 test -f "$SCH" && test -f "$PCB"
 failed=0
+python3 ci/check_libraries.py > output/checks/libraries.txt || failed=1
 kicad-cli sch export pdf -o output/pdf/schematic.pdf "$SCH" || failed=1
 kicad-cli pcb export pdf --layers F.Fab,F.Silkscreen,Edge.Cuts -o output/pdf/pcb-top.pdf "$PCB" || failed=1
 kicad-cli pcb export pdf --layers B.Cu,B.Silkscreen,Edge.Cuts -o output/pdf/pcb-bottom.pdf "$PCB" || failed=1
