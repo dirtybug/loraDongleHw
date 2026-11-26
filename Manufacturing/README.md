@@ -1,0 +1,2 @@
+# Manufacturing
+Do not manufacture the R2 draft. The CI script requires complete native KiCad files, passing ERC/DRC and a manually reviewed APPROVED marker before exporting fabrication files. The marker is deliberately absent. Gerbers and Excellon drill files are machine inputs; PDFs are for human review. BOM and placement CSV require verified manufacturer part numbers and assembly variant settings. Basic/Full variant-specific exports and approval tied to a specific revision remain to be implemented.
