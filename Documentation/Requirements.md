@@ -1,9 +1,9 @@
 # R2 hardware requirements (draft)
 - STM32G0B1RET6, four independent USARTs with RTS/CTS and DMA, fifth USART for debug logs, two SPI buses; pin mux pending.
-- FT4232H quad UART: A shared AT control, B 433 MHz data, C 868 MHz data, D selectable native mesh protocol. STM32F072CBT6 UART bridge for logs. EEPROM configuration to validate.
+- FT4232H quad UART: A shared AT control, B 433 MHz data, C 868 MHz data, D selectable native mesh protocol. STM32U073CCT6 UART bridge for logs. EEPROM configuration to validate.
 - Two SX1262 TCXO modules, 433 MHz and 868 MHz, independent 50 ohm SMA female connectors.
 - USB-C male with extended narrow neck for phone cases; preliminary board 90 x 35 mm, four layers.
-- USB2422 hub and STM32F072CBT6 CMSIS-DAP onboard debugger; external SWD isolation; U7 has 128 KB internal Flash and requires its own programming SWD access and BOOT0 bias. CMSIS-DAP plus CDC firmware port must be validated.
+- USB2422 hub and STM32U073CCT6 CMSIS-DAP onboard debugger; external SWD isolation; U7 has 256 KB internal Flash and requires its own programming SWD access and BOOT0 bias. CMSIS-DAP plus CDC firmware port must be validated.
 - Optional USB-C auxiliary 5 V input, TPS2121 power mux, mutually exclusive solder bypass, inrush and reverse-current protection. Basic and Full assembly variants.
 - Optional bulk capacitor after current limiting; verify USB power budget and all supply rails.
 - Test points on both sides of 0603 zero-ohm isolation links for UART, SPI, BUSY, DIO1 and RESET; SWD access and ground points.
