@@ -29,3 +29,13 @@ Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,T
 28,R10,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
 29,R11,1,TBD,TBD,10k DEBUG_EN pull-down; jumper to 3V3 enables,0603,SMD,Fit,Fit,Preliminary verify
 30,R12,1,TBD,TBD,10k BOOT0 pull-down,0603,SMD,Fit,Fit,Preliminary verify
+31,R13,1,TBD,TBD,10k Probe BOOT0 pull-down,0603,SMD,Fit,Fit,Preliminary verify
+32,C3,1,TBD,TBD,100n Probe reset capacitor,0603,SMD,Fit,Fit,Preliminary verify
+33,C4,1,TBD,TBD,100n U7 VDD pin 24 bypass,0603,SMD,Fit,Fit,Preliminary verify
+34,C5,1,TBD,TBD,100n U7 VDD pin 48 bypass,0603,SMD,Fit,Fit,Preliminary verify
+35,C6,1,TBD,TBD,100n U7 VDDUSB bypass,0603,SMD,Fit,Fit,Preliminary verify
+36,C7,1,TBD,TBD,100n U7 VDDA high frequency bypass,0603,SMD,Fit,Fit,Preliminary verify
+37,C8,1,TBD,TBD,1u U7 VDDA additional bypass,0603,SMD,Fit,Fit,Preliminary verify
+38,C9,1,TBD,TBD,100n U7 VBAT bypass candidate,0603,SMD,Fit,Fit,Preliminary verify
+39,C10,1,TBD,TBD,4.7u Probe local bulk capacitor candidate,0603,SMD,Fit,Fit,Preliminary verify
+40,J7,1,TBD,TBD,Probe SWD 5 pin header,2.54mm,THT,Fit,Fit,Custom pinout verify
