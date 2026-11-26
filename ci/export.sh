@@ -4,22 +4,21 @@ SCH=KiCad/LoRa_DualBand.kicad_sch
 PCB=KiCad/LoRa_DualBand.kicad_pcb
 mkdir -p output/pdf output/checks
 kicad-cli version > output/checks/version.txt
-if [[ ! -f "$SCH" || ! -f "$PCB" ]]; then
-  echo "Missing native KiCad schematic or PCB. No manufacturing output generated." | tee output/checks/status.txt
-  exit 1
+if [[ ! -f "$SCH" ]]; then SCH=KiCad/LoRa_DualBand.sch; fi
+test -f "$SCH" && test -f "$PCB"
+failed=0
+python3 ci/check_libraries.py > output/checks/libraries.txt || failed=1
+kicad-cli sch export pdf -o output/pdf/schematic.pdf "$SCH" || failed=1
+kicad-cli pcb export pdf --layers F.Fab,F.Silkscreen,Edge.Cuts -o output/pdf/pcb-top.pdf "$PCB" || failed=1
+kicad-cli pcb export pdf --layers B.Cu,B.Silkscreen,Edge.Cuts -o output/pdf/pcb-bottom.pdf "$PCB" || failed=1
+python3 ci/bom_pdf.py || failed=1
+kicad-cli sch erc --exit-code-violations -o output/checks/erc.txt "$SCH" || failed=1
+kicad-cli pcb drc --exit-code-violations -o output/checks/drc.txt "$PCB" || failed=1
+if [[ ! -f Manufacturing/APPROVED || "$SCH" != *.kicad_sch ]] || ! grep -q '(footprint ' "$PCB" || ! grep -q '(segment ' "$PCB"; then
+  echo "DRAFT ONLY: fabrication blocked; no approved routed native design." | tee output/checks/status.txt
+  exit "$failed"
 fi
-kicad-cli sch export pdf -o output/pdf/schematic.pdf "$SCH"
-kicad-cli pcb export pdf --layers F.Cu,F.Silkscreen,Edge.Cuts -o output/pdf/pcb-top.pdf "$PCB"
-kicad-cli pcb export pdf --layers B.Cu,B.Silkscreen,Edge.Cuts -o output/pdf/pcb-bottom.pdf "$PCB"
-kicad-cli sch erc --exit-code-violations -o output/checks/erc.txt "$SCH"
-kicad-cli pcb drc --exit-code-violations -o output/checks/drc.txt "$PCB"
-if [[ ! -f Manufacturing/APPROVED ]]; then
-  echo "Engineering approval missing. PDFs are development documents only." | tee output/checks/status.txt
-  exit 1
-fi
-mkdir -p output/pcbway
-kicad-cli pcb export gerbers --layers F.Cu,In1.Cu,In2.Cu,B.Cu,F.Mask,B.Mask,F.Silkscreen,B.Silkscreen,F.Paste,B.Paste,Edge.Cuts -o output/pcbway/ "$PCB"
-kicad-cli pcb export drill --format excellon --generate-map --map-format pdf -o output/pcbway/ "$PCB"
-kicad-cli sch export bom --fields 'Reference,Value,Footprint,${QUANTITY},MPN,Manufacturer,${DNP}' --labels 'Reference,Value,Footprint,Quantity,MPN,Manufacturer,DNP' -o output/bom.csv "$SCH"
-kicad-cli pcb export pos --format csv --units mm --side both --exclude-dnp -o output/pick-and-place.csv "$PCB"
-(cd output/pcbway && zip -r ../PCBWay-Gerbers-Drill.zip .)
+if [[ "$failed" != 0 ]]; then exit 1; fi
+# Production is intentionally disabled until revision-specific approval and variant BOM/CPL validation are implemented.
+echo "Production release gate not implemented." | tee output/checks/status.txt
+exit 1

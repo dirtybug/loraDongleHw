@@ -1,0 +1,2 @@
+# Draft only
+The CSV is a preliminary PCBWay-format sourcing list, not a complete schematic-derived assembly BOM. Do not order from it. Missing passives, decoupling, clocks, EEPROM, isolation links, test points, ESD, RF module MPNs and footprints must be resolved. Refdes must match final schematic and placement file. Basic/Full columns are planning flags, not finalized variants. SJ1 bypass must never be closed with populated power mux.
