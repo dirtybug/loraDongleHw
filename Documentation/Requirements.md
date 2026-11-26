@@ -15,3 +15,5 @@
 - No fabrication approval until complete schematic, real footprints, routing, ERC/DRC and engineering review. Variant-specific BOM/CPL generation still needs implementation.
 
 - Shared control commands explicitly identify target radio (433/868 or ALL where meaningful); serialize per-radio state transitions and arbitrate raw/native mesh ownership. No debug text on binary ports.
+
+- Debugger default OFF: R11 10k pull-down on DEBUG_EN. J5 enables by connecting 3V3 to DEBUG_EN; BOOTSEL uses a separate GND contact. U9 must enable high; U8/U11 must remain isolated until debugger power is valid and disable before power removal. Invert active-low OE as needed, and verify powered-off leakage and startup/shutdown sequencing. Logical enable wiring is not a validated physical isolation circuit.
