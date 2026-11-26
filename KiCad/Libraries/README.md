@@ -16,3 +16,5 @@ FTDI and STM32 identifiers are candidates from library catalogues; CI must verif
 
 Official libraries: https://gitlab.com/kicad/libraries/kicad-symbols and https://gitlab.com/kicad/libraries/kicad-footprints
 RF candidates: https://www.cdebyte.com/products/E22-900M22S/1 and https://ebyteiot.com/pt/products/e22-series-semtech-sx1262-sx1268-ultra-small-smd-lora-module-22dbm-6km-spi-tcxo
+
+U7 now uses a local legacy symbol with physical pin numbers 1–48 from the STM32U073 datasheet Figure 5. USART2 on PA2/PA3; target SWD via GPIO PA4/PA5/PA6; probe programming via PA13/PA14. Support circuits and footprint placement are not completed; official symbol candidate still requires CI verification.
