@@ -4,9 +4,9 @@ Use the official KiCad symbol and footprint libraries installed by the Dockerfil
 
 | Reference | Part | Symbol library / candidate ID | Footprint |
 |---|---|---|---|
-| U1 | FT4232HL | Interface_USB:FT4232HL | Package_QFP:LQFP-64_10x10mm_P0.5mm |
+| U1 | FT4232HL | Interface_USB:FT4232H | Package_QFP:LQFP-64_10x10mm_P0.5mm |
 | U2 | STM32G0B1RET6 | MCU_ST_STM32G0:STM32G0B1RETx | Package_QFP:LQFP-64_10x10mm_P0.5mm |
-| U7 | RP2040 | MCU_RaspberryPi_and_Boards:RP2040 (check installed library) | use official symbol footprint |
+| U7 | RP2040 | MCU_RaspberryPi:RP2040 (check installed library) | Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm |
 | U6 | USB2422 | Interface_USB (verify symbol) | verify exact package |
 | U10 | TPS2121 | Power_Management (verify symbol) | verify exact package |
 | U3 | 433 MHz SPI TCXO module | pending exact MPN | pending manufacturer land pattern |
