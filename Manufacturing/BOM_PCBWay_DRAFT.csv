@@ -28,3 +28,4 @@ Line#,Designator,Qty,Manufacturer Part Number,Manufacturer,Description,Package,T
 27,R9,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
 28,R10,1,TBD,TBD,10k SWD idle candidate,0603,SMD,Fit,Fit,Preliminary verify
 29,R11,1,TBD,TBD,10k DEBUG_EN pull-down; jumper to 3V3 enables,0603,SMD,Fit,Fit,Preliminary verify
+30,R12,1,TBD,TBD,10k BOOT0 pull-down,0603,SMD,Fit,Fit,Preliminary verify
