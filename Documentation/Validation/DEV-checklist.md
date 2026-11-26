@@ -154,9 +154,15 @@
 - [x] `PA4`/`PA5`/`PA6` = GPIO Port A para SWD target; `PA13`/`PA14` (pinos 34/37) = SWD próprio do `U7` (`J7`).
 - [ ] Validar em firmware que `VDDUSB` é habilitado via bit `USV` no registo `PWR` antes de iniciar USB, e que `HSI48 + CRS` bloqueia corretamente ao SOF do `USB2422`.
 
-### 4.4 Isolamento SWD (`U8`) e UART (`U11`)
+### 4.4 Isolamento SWD (`U8`) e UART (`U11`) + Sinais de Sistema
 - [ ] **`U8`**: suporta **`SWDIO` bidirecional** e **`NRST` open-drain bidirecional** (ex.: FET bus switch com `Ioff`, não buffer unidirecional!).
 - [ ] **`U8` e `U11`**: têm especificação **`Ioff` (partial power-down)** garantindo fuga `≤ poucos µA` quando `DBG_3V3 = 0 V` e `3V3 = 3.3 V` (zero backfeed de `U2 → U7` e vice-versa).
+- [ ] **Relógio do `U2` (`STM32G0B1RET6`)**: decidir explicitamente entre `HSI16` interno (validar margem `±2%` em temperatura com 4 UARTs `≥ 921.6 kbps`) vs **cristal HSE (`8/16 MHz`)**.
+- [ ] **Deteção de fonte ativa e enumeração USB no `U2`**:
+  - [ ] Ligar pino **`ST` do `TPS2121`** (e/ou divisor resistivo `VBUS`/`VBUS_EXT`) a GPIO/ADC de `U2` para o firmware distinguir **AUX 5 V (`J6`)** vs **OTG (`J1`)** e arbitrar TX +22 dBm simultâneo.
+  - [ ] Ligar **`PWREN#` (`FT4232HL`)** ou **`SUSP_IND` (`USB2422`)** a GPIO de `U2` para **só autorizar TX RF após enumeração USB** (respeitar `≤ 100 mA` pré-enumeração).
+- [ ] **Tensões lógicas e pinos não 5V-tolerant**: confirmar que todos os domínios operam a `3.3 V` e que **nenhum sinal `5 V` (`VBUS`/`VBUS_EXT`)** liga diretamente a pinos não-FT de `U2` ou `U7` (especialmente pinos `TTa`, `NRST`, `BOOT0`).
+- [ ] **Proteção de `J4` (SWD Externo)**: confirmar que `VTREF` em `J4` é apenas *sense* (nunca alimentar `3V3` pelo ST-Link em paralelo com `U5`) e garantir `J5` aberto ao ligar programador externo.
 
 ---
 
@@ -185,6 +191,8 @@
   - A **2.ª harmónica de `433.92 MHz` cai em `867.84 MHz`** — diretamente dentro da banda LoRa de `868 MHz`!
   - Maximizar separação física entre `U3`/`J2` e `U4`/`J3`, colocar vedação de vias `GND` entre os dois módulos, e prever na versão DEV espaço para filtro passa-baixo/SAW ou blindagem adicional se o teste de coexistência mostrar dessensibilização do recetor 868 MHz durante TX a 433 MHz!
 - [ ] **Proteção ESD RF** (se incluída): díodo de ultra-baixa capacitância (`≤ 0.25 pF`, ex. `PESD5V0R1BSF` / `ESD5Z...` rated para >22 dBm TX sem ceifar o sinal!).
+- [ ] **Filtragem da alimentação RF (`U3`, `U4`)**: prever **ferrite bead** de baixa resistência DC (`< 0.1 Ω`, `≥ 500 mA`, ex. `600 Ω @ 100 MHz`) em série antes dos condensadores `10–22 µF + 100 nF` de cada módulo E22 (pode partilhar o footprint `0805` do link `R_PWR_U3`/`R_PWR_U4`!) para bloquear ruído de comutação do buck `U5`.
+- [ ] **Conformidade RF / Medição Espectral (ETSI EN 300 220)**: prever medição em analisador de espectro (potência ERP, 2.ª harmónica de `433 MHz` em `868 MHz` e 3.ª harmónica) e validar limites regulamentares (`+10 dBm` em 433 MHz; `+14/+27 dBm` em 868 MHz conforme sub-banda).
 
 ### 5.4 Cristais, Buck (`U5`) e ESD Geral
 - [ ] **Cristais `Y1 (12 MHz)` e `Y2 (24 MHz)`**: pistas ultra-curtas, simétricas, sem vias, rodeadas por anel `GND`, **sem nenhuma outra pista** a passar por baixo em `L1/L2`.
@@ -297,11 +305,14 @@
   - [ ] Confirmar tensão/alimentação do TCXO interno dos módulos `E22-400M22S` / `E22-900M22S` (`DIO3` 1.8 V vs `VCC` 3.3 V).
   - [ ] **Regra de bancada:** NUNCA ativar TX (+22 dBm) em `U3`/`U4` sem antena ou carga de `50 Ω` ligada em `J2`/`J3` (risco de dano ao PA por VSWR elevado).
 
-### 9.2 DFM / Montagem SMT (PCBWay / JLCPCB)
+### 9.2 DFM / Montagem SMT / Mecânica & Sourcing (PCBWay / JLCPCB)
 - [ ] **Montagem preferencialmente numa só face (`F.Cu`)** (ou apenas passivos leves em `B.Cu`, evitando reflow duplo com módulos E22 pesados).
 - [ ] **3× Fiduciais globais assimétricos** em cada face com componentes SMT (`Ø 1.0 mm` cobre + `Ø 2.0 mm` abertura de soldermask, livre de serigrafia).
 - [ ] **Larguras mínimas / folgas / furos** dentro das regras standard do fabricante (ex.: pista/espaço `≥ 0.127 mm` / 5 mil, via `≥ 0.3 mm` furo / `0.6 mm` pad) + pedido de **controlo de impedância (`90 Ω` USB / `50 Ω` RF)** com o stackup real.
 - [ ] **Gestão térmica**: vias térmicas e áreas de cobre em `U5` (buck), `U10` (`TPS2121`), `U3` e `U4` (TX contínuo +22 dBm dissipa `~0.4–0.5 W` por módulo).
+- [ ] **Mecânica de dongle em telemóvel**: validar pescoço USB-C (`≥ 6–8 mm` livre, sem componentes altos na zona da capa, ancoragem THT reforçada contra momento fletor de `90 mm` + 2 antenas SMA) e prever furos de fixação para caixa 3D.
+- [ ] **Serigrafia de bancada (`F.SilkS`)**: revisão (`R2-DEV`), espaço para nº de série, etiquetas `433 MHz` (`J2`), `868 MHz` (`J3`), `AUX 5V ONLY` (`J6`), `DEBUG EN (CLOSED=ON)` (`J5`), pinout/pino 1 de `J4`/`J7` e aviso `NO TX WITHOUT 50R LOAD`.
+- [ ] **Stock real e ciclo de vida (Sourcing)**: confirmar disponibilidade efetiva (DigiKey/Mouser/LCSC/PCBWay) e ausência de *NRND/EOL* para todos os MPNs antes de fechar o layout — em especial **`J1` (USB-C macho de pescoço estendido)**.
 
 ### 9.3 Sequência de Bring-Up Seguro (1.ª Ligação da Placa DEV)
 - [ ] **Passo 1 (Sem energia):** Medir resistência `VBUS–GND`, `SYS_5V–GND`, `3V3–GND` e `DBG_3V3–GND` com multímetro (confirmar ausência de curto).
