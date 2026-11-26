@@ -2,7 +2,7 @@ EESchema Schematic File Version 4
 LIBS:LoRa_DualBand-cache
 EELAYER 29 0
 EELAYER END
-$Descr A3 16535 11693
+$Descr A2 23386 16535
 encoding utf-8
 Sheet 1 1
 Title "LoRa DualBand R2 - shared AT control"
@@ -813,4 +813,161 @@ F 1 "BULK_DNP_AFTER_INRUSH" H 10800 8850 50 0000 C CNN
 $EndComp
 Text Notes 1200 10300 0 60 ~ 0
 DRAFT: functional isolation and power topology only; physical circuits and inrush protection pending.
+Text Notes 1200 11100 0 75 ~ 12
+Target idle and reset passives - preliminary values; verify physical module and debug reference circuits.
+$Comp
+L LoRa_DualBand:PASSIVE_R R4
+U 1 1 43D0500
+P 2200 11900
+F 0 "R4" H 2200 11750 50 0000 C CNN
+F 1 "10k" H 2200 12050 50 0000 C CNN
+	1 2200 11900
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	1350 11900 1850 11900
+Text Label 1350 11900 0 40 ~ 0
+NRST
+Wire Wire Line
+	2550 11900 3050 11900
+Text Label 2550 11900 0 40 ~ 0
+3V3
+$Comp
+L LoRa_DualBand:PASSIVE_C C2
+U 1 1 43D0501
+P 7000 11900
+F 0 "C2" H 7000 11750 50 0000 C CNN
+F 1 "100n" H 7000 12050 50 0000 C CNN
+	1 7000 11900
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	6150 11900 6650 11900
+Text Label 6150 11900 0 40 ~ 0
+NRST
+Wire Wire Line
+	7350 11900 7850 11900
+Text Label 7350 11900 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_R R5
+U 1 1 43D0502
+P 11800 11900
+F 0 "R5" H 11800 11750 50 0000 C CNN
+F 1 "10k" H 11800 12050 50 0000 C CNN
+	1 11800 11900
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	10950 11900 11450 11900
+Text Label 10950 11900 0 40 ~ 0
+A_NSS
+Wire Wire Line
+	12150 11900 12650 11900
+Text Label 12150 11900 0 40 ~ 0
+3V3
+$Comp
+L LoRa_DualBand:PASSIVE_R R6
+U 1 1 43D0503
+P 2200 13000
+F 0 "R6" H 2200 12850 50 0000 C CNN
+F 1 "10k" H 2200 13150 50 0000 C CNN
+	1 2200 13000
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	1350 13000 1850 13000
+Text Label 1350 13000 0 40 ~ 0
+B_NSS
+Wire Wire Line
+	2550 13000 3050 13000
+Text Label 2550 13000 0 40 ~ 0
+3V3
+$Comp
+L LoRa_DualBand:PASSIVE_R R7
+U 1 1 43D0504
+P 7000 13000
+F 0 "R7" H 7000 12850 50 0000 C CNN
+F 1 "10k" H 7000 13150 50 0000 C CNN
+	1 7000 13000
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	6150 13000 6650 13000
+Text Label 6150 13000 0 40 ~ 0
+A_RESET
+Wire Wire Line
+	7350 13000 7850 13000
+Text Label 7350 13000 0 40 ~ 0
+3V3
+$Comp
+L LoRa_DualBand:PASSIVE_R R8
+U 1 1 43D0505
+P 11800 13000
+F 0 "R8" H 11800 12850 50 0000 C CNN
+F 1 "10k" H 11800 13150 50 0000 C CNN
+	1 11800 13000
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	10950 13000 11450 13000
+Text Label 10950 13000 0 40 ~ 0
+B_RESET
+Wire Wire Line
+	12150 13000 12650 13000
+Text Label 12150 13000 0 40 ~ 0
+3V3
+$Comp
+L LoRa_DualBand:PASSIVE_R R9
+U 1 1 43D0506
+P 2200 14100
+F 0 "R9" H 2200 13950 50 0000 C CNN
+F 1 "10k" H 2200 14250 50 0000 C CNN
+	1 2200 14100
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	1350 14100 1850 14100
+Text Label 1350 14100 0 40 ~ 0
+SWDIO
+Wire Wire Line
+	2550 14100 3050 14100
+Text Label 2550 14100 0 40 ~ 0
+3V3
+$Comp
+L LoRa_DualBand:PASSIVE_R R10
+U 1 1 43D0507
+P 7000 14100
+F 0 "R10" H 7000 13950 50 0000 C CNN
+F 1 "10k" H 7000 14250 50 0000 C CNN
+	1 7000 14100
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	6150 14100 6650 14100
+Text Label 6150 14100 0 40 ~ 0
+SWCLK
+Wire Wire Line
+	7350 14100 7850 14100
+Text Label 7350 14100 0 40 ~ 0
+GND
+$Comp
+L LoRa_DualBand:PASSIVE_R R11
+U 1 1 43D0508
+P 11800 14100
+F 0 "R11" H 11800 13950 50 0000 C CNN
+F 1 "10k" H 11800 14250 50 0000 C CNN
+	1 11800 14100
+	1 0 0 -1
+$EndComp
+Wire Wire Line
+	10950 14100 11450 14100
+Text Label 10950 14100 0 40 ~ 0
+DEBUG_EN
+Wire Wire Line
+	12150 14100 12650 14100
+Text Label 12150 14100 0 40 ~ 0
+3V3
+Text Notes 1200 15500 0 60 ~ 0
+Bridge-view UART labels: bridge TX/RTS to target RX/CTS. DEBUG_EN high enables; J5 shorts low to disable.
 $EndSCHEMATC
