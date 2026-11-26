@@ -647,6 +647,10 @@ Wire Wire Line
 	5450 6050 5700 6050
 Text Label 5450 6050 0 35 ~ 0
 BOOTSEL
+Wire Wire Line
+	3500 5800 3750 5800
+Text Label 3500 5800 0 35 ~ 0
+3V3
 $Comp
 L LoRa_DualBand:J5_DEBUG_CONTROL J5
 U 1 1 41D025E
@@ -967,7 +971,9 @@ DEBUG_EN
 Wire Wire Line
 	12150 14100 12650 14100
 Text Label 12150 14100 0 40 ~ 0
-3V3
+GND
 Text Notes 1200 15500 0 60 ~ 0
-Bridge-view UART labels: bridge TX/RTS to target RX/CTS. DEBUG_EN high enables; J5 shorts low to disable.
+Bridge-view UART labels: bridge TX/RTS to target RX/CTS. DEBUG_EN high enables; J5 open defaults OFF.
+Text Notes 1200 15700 0 60 ~ 0
+J5: separate jumpers 3V3 to DEBUG_EN and GND to BOOTSEL. Never short 3V3 to GND.
 $EndSCHEMATC
