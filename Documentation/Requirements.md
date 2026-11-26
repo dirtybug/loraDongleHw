@@ -1,0 +1,15 @@
+# R2 hardware requirements (draft)
+- STM32G0B1CBT6, two independent USARTs with RTS/CTS and DMA, two SPI buses.
+- FT2232H dual UART, one port per radio; EEPROM configuration to validate.
+- Two SX1262 TCXO modules, 433 MHz and 868 MHz, independent 50 ohm SMA female connectors.
+- USB-C male with extended narrow neck for phone cases; preliminary board 90 x 35 mm, four layers.
+- USB2422 hub and RP2040 CMSIS-DAP onboard debugger; external SWD isolation and BOOTSEL.
+- Optional USB-C auxiliary 5 V input, TPS2121 power mux, mutually exclusive solder bypass, inrush and reverse-current protection. Basic and Full assembly variants.
+- Optional bulk capacitor after current limiting; verify USB power budget and all supply rails.
+- Test points on both sides of 0603 zero-ohm isolation links for UART, SPI, BUSY, DIO1 and RESET; SWD access and ground points.
+- Separate power isolation links and current measurement points per subsystem; prevent GPIO backfeed.
+- No conventional stubs on RF or USB HS differential traces.
+- Validate pin multiplexing, RF harmonics/coexistence, antenna match, power and mechanical strength.
+- Firmware and Android belong to separate repositories. Target Keil RTX5.
+- Original reference: https://github.com/Ropixon/AT-LoRa-USB-Dongle (do not redistribute original design without verified permission).
+- No fabrication approval until complete schematic, real footprints, routing, ERC/DRC and engineering review. Variant-specific BOM/CPL generation still needs implementation.
